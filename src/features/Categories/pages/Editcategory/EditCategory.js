@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -13,7 +13,6 @@ class Thumb extends React.Component {
       loading: false,
       thumb: undefined,
     };
-  
     componentWillReceiveProps(nextProps) {
       if (!nextProps.file) { return; }
   

@@ -8,7 +8,6 @@ import './ListCategories.css';
 
 import CategoryApi from 'api/CategoryApi';
 
-
 function ListCategories() {
     const [categories, setCategories] = useState();
 
@@ -63,7 +62,7 @@ function ListCategories() {
                     categories.map((category, index) => (
                         // <Category category={category} key={index} />
                         <tr>
-                            <td>{category.CategoryName}</td>
+                            <td>{category.Title}</td>
                             <td className="LC-icon" onClick={deleteHandle(category.id)} title="Xóa bài đăng"><DeleteIcon /></td>
                             <td className="LC-icon" title="Sửa bài đăng">
                                 <Link 

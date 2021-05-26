@@ -1,0 +1,39 @@
+.Banner{
+    height: auto;
+    width: 100%;
+}
+.B-title{
+    font-size: 32px;
+    padding: 10px;
+}
+.B-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.Banner img{
+    height: 200px;
+    width: 94%;
+    margin: 3%;
+}
+.BannerItem{
+    display: flex;
+    align-items: center;
+}
+.btn_delete{
+    cursor: pointer;
+}
+.add-banner img{
+    height: auto;
+    width: auto;
+
+}
+.btn-submit{
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.ImageSubmit{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}

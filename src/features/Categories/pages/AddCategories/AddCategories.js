@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -7,47 +8,16 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 
+import Thumb from 'components/Thumb/Thumb';
+
 import './AddCategories.css';
 
 import CategoryApi from '../../../../api/CategoryApi';
 
-class Thumb extends React.Component {
-    state = {
-      loading: false,
-      thumb: undefined,
-    };
-  
-    componentWillReceiveProps(nextProps) {
-      if (!nextProps.file) { return; }
-  
-      this.setState({ loading: true }, () => {
-        let reader = new FileReader();
-  
-        reader.onloadend = () => {
-          this.setState({ loading: false, thumb: reader.result });
-        };
-  
-        reader.readAsDataURL(nextProps.file);
-      });
-    }
-  
-    render() {
-      const { file } = this.props;
-      const { loading, thumb } = this.state;
-  
-      if (!file) { return null; }
-  
-      if (loading) { return <p>loading...</p>; }
-  
-      return (<img src={thumb}
-        alt={file.name}
-        className="img-thumbnail mt-2"
-        height={400}
-        width={600} />);
-    }
-}
+
   
 function AddCategories(props) {
+    let history = useHistory();
     const [content, setContent] = useState();
     const [detail, setDetail] = useState();
     const [submenu, setSubmenu] = useState();
@@ -80,6 +50,7 @@ function AddCategories(props) {
             try {
                 const response = await CategoryApi.postCategory(values);
                 console.log(response);
+                history.push("/DangBai")
             } catch (error) {
                 console.log("failed post category: ", error);
             }

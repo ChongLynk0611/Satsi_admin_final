@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
 
 import NavItem from 'components/NavItem/NavItem'
 
@@ -11,6 +12,11 @@ import './NavLeft.css';
 
 const ListItem = [
     {
+        icon:<HomeIcon style={{fontSize:"24px"}} />,
+        content:"Trang chủ",
+        href:"/TrangChu"
+    },
+    {
         icon: <PostAddIcon style={{fontSize:"24px"}}/>,
         content:"Đăng bài",
         href:"/DangBai"
@@ -19,7 +25,18 @@ const ListItem = [
         icon: <MenuIcon style={{fontSize:"24px"}}/>,
         content:"Thêm danh mục",
         href:"/DanhMuc"
-    }
+    },
+    {
+        icon: <MenuIcon style={{fontSize:"24px"}}/>,
+        content:"Thêm danh mục",
+        href:"/DanhMuc"
+    },
+    {
+        icon: <MenuIcon style={{fontSize:"24px"}}/>,
+        content:"Thêm danh mục",
+        href:"/DanhMuc"
+    },
+    
 ]
 
 function NavLeft(props) {

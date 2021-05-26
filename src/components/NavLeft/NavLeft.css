@@ -1,5 +1,6 @@
 .NavLeft{
     width: 280px;
+    height: auto;
     position: fixed;
     top: 0;
     left: 0;
