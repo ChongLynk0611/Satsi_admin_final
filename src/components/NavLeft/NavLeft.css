@@ -1,0 +1,39 @@
+.NavLeft{
+    width: 280px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-image: url('../../assets/images/Background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.overlay{
+    height: 100%;
+    width: 280px;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+}
+.NF-body{
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    width: 280px;
+    padding: 15px;
+}
+.NL-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: #756e6e solid 1px;
+}
+.NL-title img{
+    width: 60%;
+}
+.NL-ListItem{
+    width: 100%;
+}

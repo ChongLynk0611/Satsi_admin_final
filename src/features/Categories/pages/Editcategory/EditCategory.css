@@ -1,0 +1,11 @@
+.EditCategory{
+    height: auto;
+    width: 100%;
+    padding: 100px 0;
+    
+}
+.EditCategory .EC-title{
+    font-size: 32px;
+    padding: 0 10%;
+    font-weight: 400;
+}

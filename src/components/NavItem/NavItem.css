@@ -1,0 +1,20 @@
+.NavItem{
+    height: auto;
+    width: 100%;
+    padding: 15px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+.NavItem span{
+    font-size: 18px;
+    font-weight: 300;
+    margin-left: 10px;
+}
+.isFocus{
+    background-color: #16acc1;
+    border-radius: 5px;
+}
