@@ -7,59 +7,31 @@ import Thumb from 'components/Thumb/Thumb';
 import './Banner.css';
 
 import BannerApi from 'api/BannerApi';
+import fetchData from 'hooks/fetchData';
+import deleteData from 'hooks/deleteData';
+import postData from 'hooks/postData';
 
 function Banner() {
     const [images, setImages] = useState();
     const initValues = {
         Image:""
     }
-
+ 
     useEffect(() => {
-        const getBanners = async () => {
-            try {
-                const response = await BannerApi.getBanner();
-                console.log(response);
-                setImages(response);
-            } catch (error) {
-                console.log("failed get banners: ", error);
-            }
-        }
-
-        getBanners();
+       fetchData(BannerApi.getBanner, setImages);
     },[]);
 
     const deleteHandle = (id) => {
         return () => {
-            const deleteBanner = async () => {
-                try {
-                    const response = await BannerApi.deleteBanner(id);
-                    console.log(response, id);
-                    const new_Banners = images.filter(image => id !== image.id);
-                    setImages(new_Banners);
-                    alert("Đã xóa banner thành công!!!");
-                } catch (error) {
-                    console.log("failed delete banner : ", error);
-                }
-            }
-            deleteBanner();
+            deleteData(BannerApi.deleteBanner, setImages, id);
         }
     }
 
     const hanldeSubmit = (values) => {
-        const createBanner = async (values) => {
-            try {
-                const response = await BannerApi.postBanner(values);
-                setImages(response.listBanner.data);
-                alert("Thêm banner thành công!!!");
-            } catch (error) {
-                console.log("failed post banner : ", error);
-            }
-        }
-
         let data = new FormData();
         data.append("Image", values.Image);
-
-        createBanner(data);
+        postData(BannerApi.postBanner, setImages, data);
+        values.Image = "";
     }
 
     return (
@@ -97,7 +69,7 @@ function Banner() {
                                 }}
                                 name="Image"
                             />
-                            <Thumb file={values.Image} />
+                            {values.Image && <Thumb file={values.Image} />}
                             <button className="btn-submit" type="submit">Đăng tải</button>
                         </form>
                     )}

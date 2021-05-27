@@ -26,26 +26,22 @@
     margin-top: 20px;
     width: 100%;
 }
-table {
+.LC-body table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
-tr{
+.LC-body tr{
     width: 100%;
     display: grid;
     grid-template-columns: 6fr 1fr 1fr;
     margin: 0;
     padding: 0;
 }
-td, th {
+.LC-body td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
 }
 
 .LC-icon{

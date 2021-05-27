@@ -1,0 +1,40 @@
+.Commitment{
+    height: auto;
+    width: 100%;
+    padding: 40px 10%;
+}
+.C-title{
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+.C-body{
+    margin-bottom: 40px;
+}
+.C-body table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.C-body tr{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 5fr 1fr 1fr;
+    margin: 0;
+    padding: 0;
+}
+.C-body td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.C-icon{
+    cursor: pointer;
+}
+.Input-commitment{
+    font-size: 14px;
+    padding: 5px;
+}
+.C-subTitle{
+    margin-top: 10px;
+}

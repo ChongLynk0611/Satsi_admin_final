@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 
 import Banner from '../../components/Banner/Banner';
 import Intro from '../../components/Intro/Intro';
+import Commitment from '../../components/Commitment/Commitment';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -64,7 +65,7 @@ export default function HomePage() {
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Banner" {...a11yProps(0)} />
           <Tab label="Giới thiệu" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Cam kết" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -74,7 +75,7 @@ export default function HomePage() {
         <Intro />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Commitment />
       </TabPanel>
     </div>
   );
