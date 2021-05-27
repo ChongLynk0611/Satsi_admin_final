@@ -12,7 +12,6 @@ const bannerApi ={
     },
     deleteBanner: (params) => {
         const url = `/Banners/${params}`;
-        // console.log(url);
         return axiosClient.delete(url);
     }
 }

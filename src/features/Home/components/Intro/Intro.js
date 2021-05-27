@@ -16,7 +16,7 @@ function Intro() {
                 const response = await IntroApi.getIntro();
                 console.log(response);
                 setInitValues({
-                    id: response[0].id,
+                    // id: response[0].id,
                     Title:response[0].Title,
                     SubTitle:response[0].SubTitle,
                     Description: response[0].Description,
@@ -33,13 +33,14 @@ function Intro() {
     const handleSubmit = (values) => {
         const updateIntro = async (values) => {
             try {
-                const response = await IntroApi.updateIntro(values.id,values);
+                const response = await IntroApi.updateIntro("829d45ce-bd42-11eb-b255-120c61defa82",values);
                 console.log(response);
                 setInitValues(values);
             } catch (error) {
                 console.log("failed update Intro: ", error);
             }
         }
+        console.log(values);
         updateIntro(values);
     }
 

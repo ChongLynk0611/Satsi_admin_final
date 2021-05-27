@@ -36,6 +36,7 @@ function Banner() {
                     console.log(response, id);
                     const new_Banners = images.filter(image => id !== image.id);
                     setImages(new_Banners);
+                    alert("Đã xóa banner thành công!!!");
                 } catch (error) {
                     console.log("failed delete banner : ", error);
                 }
@@ -48,8 +49,8 @@ function Banner() {
         const createBanner = async (values) => {
             try {
                 const response = await BannerApi.postBanner(values);
-                console.log(response.listBanner.data);
                 setImages(response.listBanner.data);
+                alert("Thêm banner thành công!!!");
             } catch (error) {
                 console.log("failed post banner : ", error);
             }
@@ -67,7 +68,7 @@ function Banner() {
             <div className="B-body">
                 {images && images.map((image, index) => (
                     <div className="BannerItem" key={index}>
-                        <img src={`${process.env.REACT_APP_API_URL}/${image.BannerImgUrl}`}/>
+                        <img src={`${process.env.REACT_APP_API_URL}/${image.Image}`}/>
                         <div 
                             className="btn_delete" 
                             title="Xóa banner"
@@ -100,7 +101,6 @@ function Banner() {
                             <button className="btn-submit" type="submit">Đăng tải</button>
                         </form>
                     )}
-
                 </Formik>
             </div>
         </div>
