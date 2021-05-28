@@ -1,5 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
+import { Formik } from 'formik';
+
+import Thumb from 'components/Thumb/Thumb';
 
 import './Images.css';
 
@@ -10,6 +13,7 @@ import postData from 'hooks/postData';
 
 function Image() {
     const [images, setImages] = useState();
+    const initialValues = {Image:""};
 
     useEffect(() => {
         fetchData(ImageApi.getImages, setImages);
@@ -19,6 +23,13 @@ function Image() {
         return () => {
             deleteData(ImageApi.deleteImage, setImages, id);
         }
+    }
+
+    const hanldeSubmit = (values) => {
+        let data = new FormData();
+        data.append("Image", values.Image);
+        postData(ImageApi.postImage, setImages, data);
+        values.Image = "";
     }
 
     return (
@@ -35,6 +46,32 @@ function Image() {
                         ><DeleteIcon /></div>
                     </div>
                 ))}
+            </div>
+            <div className="add-images">
+                <p>Thêm hình ảnh :</p>
+                <Formik
+                    initialValues={initialValues}
+                    onSubmit = {hanldeSubmit}
+                >
+                    {({
+                        values,
+                        handleSubmit,
+                        setFieldValue
+                        /* and other goodies */
+                    }) => (
+                        <form onSubmit={handleSubmit} className="ImageSubmit">
+                            <input 
+                                type="file"
+                                onChange={(event) => {
+                                    setFieldValue("Image", event.target.files[0]);
+                                }}
+                                name="Image"
+                            />
+                            {values.Image && <Thumb file={values.Image} />}
+                            <button className="btn-submit" type="submit">Đăng tải</button>
+                        </form>
+                    )}
+                </Formik>
             </div>
             
         </div>

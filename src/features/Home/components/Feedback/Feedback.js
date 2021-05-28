@@ -1,65 +1,43 @@
 import React,{useState, useEffect} from 'react'
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 
-import Thumb from 'components/Thumb/Thumb';
+import './Feedback.css';
 
-import './Pretige.css';
-
-import PretigeApi from 'api/PretigeApi';
+import FeedbackApi from 'api/FeedbackApi';
 import fetchData from 'hooks/fetchData';
 import deleteData from 'hooks/deleteData';
 import postData from 'hooks/postData';
 import updateData from 'hooks/updateData';
 
-function Pretige() {
-    const [reload, setReload ] = useState(true);
-    const [pretiges, setPretiges] = useState();
-    const initialValues = {id:"",Title:"", Image:"", Content:""};
+function Feedback() {
+    const [feedbacks, setFeedbacks] = useState();
 
     useEffect(() => {
-        fetchData(PretigeApi.getPretige, setPretiges);
+        fetchData(FeedbackApi.getFeedbacks, setFeedbacks);
     },[]);
 
-    const deleteHanlde = (id) => {
+    const deleteHanlde = (id) =>{
         return () => {
-            deleteData(PretigeApi.deletePretige, setPretiges, id);
+            // deleteData(FeedbackApi.deleteFeedback, setFeedbacks, id);
+            console.log(id);
         }
     }
-
-    const choosePretige = (item, values) => {
+    const chooseFeedback = (item, values) => {
         return () => {
-            values.id = item.id;
-            values.Title = item.Title;
-            values.Image = item.ImgUrl;
-            values.Content = item.Content;
-            setReload(!reload);
-            console.log(item);
-         }
-    }
 
-    const handleSubmit = (values) => {
-        let data = new FormData();
-        data.append("Title", values.Title);
-        data.append("Content", values.Content);
-        data.append("Image", values.Image);
-        // Trường hợp thêm mới 
-        if(values.id === ""){
-            postData(PretigeApi.postpretige, setPretiges, data);
-        }else{
-            // Trường hợp câp nhật
-            updateData(PretigeApi.updatePretige, setPretiges, data, values.id);
         }
     }
     return (
-        <div className="Pretige">
+        <div className="Feedback">
             <Formik
-                initialValues={initialValues}
-                onSubmit = {handleSubmit}
+                // initialValues={initaValues}
+                // onSubmit = {handleSubmit}
             >
                 {({
                     values,
@@ -68,40 +46,43 @@ function Pretige() {
                     handleChange,
                     handleBlur,
                     handleSubmit,
+                    
                     setFieldValue
                     /* and other goodies */
                 }) => (
                     <div>
-                        <p className="P-title">Uy tín</p>
-                        <div className="P-body">
+                        <p className="F-title">Cam kết</p>
+                        <div className="F-body">
                             <table>
                                 <tr>
                                     <th>Tên</th>
+                                    <th>Chi tiết</th>
                                     <th>Xóa</th>
                                     <th>Sửa</th>
                                 </tr>
                             </table>
-                            {pretiges && 
-                                pretiges.map((item, index) => (
-                                    <tr key={index}>
+                            {feedbacks && 
+                                feedbacks.map((item, index) => (
+                                    <tr>
                                         <td>{item.Title}</td>
-                                        <td className="P-icon" onClick={deleteHanlde(item.id)} title="Xóa cam kết"><DeleteIcon /></td>
-                                        <td className="P-icon" onClick={choosePretige(item, values)} title="Sửa cam kết"><EditIcon /></td>
+                                        <td>{parse(item.Content)}</td>
+                                        <td className="F-icon" onClick={deleteHanlde(item.id)} title="Xóa cam kết"><DeleteIcon /></td>
+                                        <td className="F-icon" onClick={chooseFeedback(item, values)} title="Sửa cam kết"><EditIcon /></td>
                                     </tr>   
                                 ))
 
                             }
                         </div>
-                        <div className="P-curent">
-                            <p className="P-title">Chi tiết uy tín</p>
+                        {/* <div className="C-curent">
+                            <p className="C-title">Chi tiết cam kết</p>
                             <form onSubmit={handleSubmit} className="ImageSubmit">
-                                <p className="P-subTitle">Tiêu đề:</p>
+                                <p className="C-subTitle">Tiêu đề:</p>
                                 <input 
                                     name="Title"
                                     value={values.Title}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className="Input-pretige"
+                                    className="Input-commitment"
                                 />
                                 <p className="C-subTitle">Nội dung:</p>
                                 <CKEditor
@@ -131,7 +112,7 @@ function Pretige() {
                                 }
                                 <button className="btn-submit" type="submit">Cập nhật</button>
                             </form>
-                        </div>
+                        </div> */}
                     </div>
                     
                 )}
@@ -141,4 +122,4 @@ function Pretige() {
     )
 }
 
-export default Pretige
+export default Feedback

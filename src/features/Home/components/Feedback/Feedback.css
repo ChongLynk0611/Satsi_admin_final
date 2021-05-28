@@ -1,50 +1,33 @@
-.Commitment{
+.Feedback{
     height: auto;
     width: 100%;
     padding: 40px 10%;
 }
-.C-title{
-    font-size: 32px;
-    margin-bottom: 20px;
-    font-weight: 400;
-}
-.C-body{
-    margin-bottom: 40px;
-}
-.C-curent{
-    width: 100%;
-}
-.ImageSubmit{
-    width: 100%;
-}
-.F-title{
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-.C-body table {
+
+.F-body table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
-.C-body tr{
+.F-body tr{
     width: 100%;
     display: grid;
     grid-template-columns: 3fr 5fr 1fr 1fr;
     margin: 0;
     padding: 0;
 }
-.C-body td, th {
+.F-body td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
 }
-.C-icon{
+.F-icon{
     cursor: pointer;
 }
-.Input-commitment{
+/* .Input-commitment{
     font-size: 14px;
     padding: 5px;
 }
 .C-subTitle{
     margin-top: 10px;
-}
+} */

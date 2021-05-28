@@ -5,10 +5,10 @@ const ImageApi ={
         const url = "/Images";
         return axiosClient.get(url);
     },
-    // postBanner:(params) =>{
-    //     const url = "/Banners";
-    //     return axiosClient.post(url, params);
-    // },
+    postImage:(params) =>{
+        const url = "/Images";
+        return axiosClient.post(url, params);
+    },
     deleteImage: (params) => {
         const url = `/Images/${params}`;
         return axiosClient.delete(url);

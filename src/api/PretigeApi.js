@@ -8,15 +8,15 @@ const pretigeApi = {
     deletePretige: (id) => {
         const url = `/Pretige/${id}`;
         return axiosClient.delete(url);
+    },
+    postpretige:(params) => {
+        const url = "/Pretige";
+        return axiosClient.post(url, params);
+    },
+    updatePretige:(id, params) => {
+        const url = `/Pretige/${id}`;
+        return axiosClient.put(url, params);
     }
-    // postCommitment:(params) => {
-    //     const url = "/Commitment";
-    //     return axiosClient.post(url, params);
-    // },
-    // updateCommitment:(id, params) => {
-    //     const url = `/Commitment/${id}`;
-    //     return axiosClient.put(url, params);
-    // }
 }
 
 export default pretigeApi;

@@ -12,6 +12,7 @@ import Intro from '../../components/Intro/Intro';
 import Commitment from '../../components/Commitment/Commitment';
 import Pretige from '../../components/Pretige/Pretige';
 import Images from '../../components/Images/Image';
+import Feedback from '../../components/Feedback/Feedback';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,6 +88,9 @@ export default function HomePage() {
       </TabPanel>
       <TabPanel value={value} index={4}>
         <Images />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <Feedback />
       </TabPanel>
     </div>
   );
