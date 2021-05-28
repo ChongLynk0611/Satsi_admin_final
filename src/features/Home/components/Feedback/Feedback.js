@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
-import { Formik } from 'formik';
+import { Formik, validateYupSchema } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
@@ -19,7 +19,8 @@ import updateData from 'hooks/updateData';
 
 function Feedback() {
     const [feedbacks, setFeedbacks] = useState();
-    const intialValues = {id:"", PersonName:"", PersonDetail:"", Content:"", Avatar:""};
+    const [reload, setReload] = useState(true);
+    const intialValues = {id:"", PersonName:"", PersonDetail:"", Content:"", Image:""};
 
 
     useEffect(() => {
@@ -28,27 +29,33 @@ function Feedback() {
 
     const deleteHanlde = (id) =>{
         return () => {
-            // deleteData(FeedbackApi.deleteFeedback, setFeedbacks, id);
-            console.log(id);
+            deleteData(FeedbackApi.deleteFeedback, setFeedbacks, id);
         }
     }
+
     const chooseFeedback = (item, values) => {
         return () => {
-
+            values.PersonName = item.PersonName;
+            values.PersonDetail = item.PersonDetail;
+            values.Content = item.Content;
+            values.Image = item.Image;
+            setReload(!reload);
         }
     }
-    
+
     const handleSubmit = (values) => {
         let data = new FormData();
         data.append("PersonName", values.PersonName);
         data.append("PersonDetail", values.PersonDetail);
         data.append("Content", values.Content);
-        data.append("Avatar", values.Avatar);
+        data.append("Image", values.Image);
+
         if(values.id === ""){
             //Trường hợp thêm mới
             postData(FeedbackApi.postFeedback, setFeedbacks, data);
         }else{
             //Trường hợp cập nhật
+            
         }
     }
     return (
@@ -124,12 +131,12 @@ function Feedback() {
                                 <input 
                                     type="file"
                                     onChange={(event) => {
-                                        setFieldValue("Avatar", event.target.files[0]);
+                                        setFieldValue("Image", event.target.files[0]);
                                     }}
                                     name="Avatar"
                                 />
                                 {
-                                    typeof(values.Avatar) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Avatar}`}/> : <Thumb file={values.Avatar} />
+                                    typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/> : <Thumb file={values.Image} />
                                 }
                                 <button className="btn-submit" type="submit">{values.id ? "Cập nhật" : "Tạo"}</button>
                             </form>

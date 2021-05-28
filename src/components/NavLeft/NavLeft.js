@@ -18,7 +18,7 @@ const ListItem = [
     },
     {
         icon: <PostAddIcon style={{fontSize:"24px"}}/>,
-        content:"Đăng bài",
+        content:"Ngành nghề du học",
         href:"/DangBai"
     },
     {

@@ -13,10 +13,10 @@ const feedbackApi = {
         const url = "/Feedbacks";
         return axiosClient.post(url, params);
     },
-    // updateCommitment:(id, params) => {
-    //     const url = `/Commitment/${id}`;
-    //     return axiosClient.put(url, params);
-    // }
+    updateFeedback:(id, params) => {
+        const url = `/Commitment/${id}`;
+        return axiosClient.put(url, params);
+    }
 }
 
 export default feedbackApi;

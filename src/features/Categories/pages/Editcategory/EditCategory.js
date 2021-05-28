@@ -22,7 +22,6 @@ class Thumb extends React.Component {
         reader.onloadend = () => {
           this.setState({ loading: false, thumb: reader.result });
         };
-  
         reader.readAsDataURL(nextProps.file);
       });
     }
