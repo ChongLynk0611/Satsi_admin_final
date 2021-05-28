@@ -7,6 +7,8 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
 
+import Thumb from 'components/Thumb/Thumb';
+
 import './Feedback.css';
 
 import FeedbackApi from 'api/FeedbackApi';
@@ -17,6 +19,8 @@ import updateData from 'hooks/updateData';
 
 function Feedback() {
     const [feedbacks, setFeedbacks] = useState();
+    const intialValues = {id:"", PersonName:"", PersonDetail:"", Content:"", Avatar:""};
+
 
     useEffect(() => {
         fetchData(FeedbackApi.getFeedbacks, setFeedbacks);
@@ -33,11 +37,25 @@ function Feedback() {
 
         }
     }
+    
+    const handleSubmit = (values) => {
+        let data = new FormData();
+        data.append("PersonName", values.PersonName);
+        data.append("PersonDetail", values.PersonDetail);
+        data.append("Content", values.Content);
+        data.append("Avatar", values.Avatar);
+        if(values.id === ""){
+            //Trường hợp thêm mới
+            postData(FeedbackApi.postFeedback, setFeedbacks, data);
+        }else{
+            //Trường hợp cập nhật
+        }
+    }
     return (
         <div className="Feedback">
             <Formik
-                // initialValues={initaValues}
-                // onSubmit = {handleSubmit}
+                initialValues={intialValues}
+                onSubmit = {handleSubmit}
             >
                 {({
                     values,
@@ -51,12 +69,13 @@ function Feedback() {
                     /* and other goodies */
                 }) => (
                     <div>
-                        <p className="F-title">Cam kết</p>
+                        <p className="F-title">Phản hồi của học viên</p>
                         <div className="F-body">
                             <table>
                                 <tr>
                                     <th>Tên</th>
                                     <th>Chi tiết</th>
+                                    <th>Nội dung</th>
                                     <th>Xóa</th>
                                     <th>Sửa</th>
                                 </tr>
@@ -64,8 +83,9 @@ function Feedback() {
                             {feedbacks && 
                                 feedbacks.map((item, index) => (
                                     <tr>
-                                        <td>{item.Title}</td>
-                                        <td>{parse(item.Content)}</td>
+                                        <td>{item.PersonName}</td>
+                                        <td>{item.PersonDetail}</td>
+                                        <td>{item.Content}</td>
                                         <td className="F-icon" onClick={deleteHanlde(item.id)} title="Xóa cam kết"><DeleteIcon /></td>
                                         <td className="F-icon" onClick={chooseFeedback(item, values)} title="Sửa cam kết"><EditIcon /></td>
                                     </tr>   
@@ -73,46 +93,47 @@ function Feedback() {
 
                             }
                         </div>
-                        {/* <div className="C-curent">
-                            <p className="C-title">Chi tiết cam kết</p>
+                        <div className="F-curent">
+                            <p className="F-title">Chi tiết phản hồi</p>
                             <form onSubmit={handleSubmit} className="ImageSubmit">
-                                <p className="C-subTitle">Tiêu đề:</p>
+                                <p className="F-subTitle">Tên:</p>
                                 <input 
-                                    name="Title"
-                                    value={values.Title}
+                                    name="PersonName"
+                                    value={values.PersonName}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className="Input-commitment"
+                                    className="Input-Feedback"
                                 />
-                                <p className="C-subTitle">Nội dung:</p>
-                                <CKEditor
-                                    editor={ ClassicEditor }
-                                    data={values.Content}
-                                    onChange={(event, editor) => {
-                                        const data = editor.getData();
-                                        values.Content = data;
-                                    }}
-                                    onReady={ editor => {
-                                        // You can store the "editor" and use when it is needed.
-                                        console.log( 'Editor is ready to use!', editor );
-                                    } }
-                                    // onBlur={ handleBlur }
+                                <p className="F-subTitle">Chi tiết:</p>
+                                <textarea 
+                                    name="PersonDetail"
+                                    value={values.PersonDetail}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    className="textarea-Feedback"
+                                />
+                                <p className="F-subTitle">Nội dung:</p>
+                                <textarea 
                                     name="Content"
+                                    value={values.Content}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    className="textarea-Feedback"
                                 />
-                                <p className="C-subTitle">Ảnh nền: </p>
+                                <p className="F-subTitle">Ảnh đại diện: </p>
                                 <input 
                                     type="file"
                                     onChange={(event) => {
-                                        setFieldValue("Image", event.target.files[0]);
+                                        setFieldValue("Avatar", event.target.files[0]);
                                     }}
-                                    name="Image"
+                                    name="Avatar"
                                 />
                                 {
-                                    typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/> : <Thumb file={values.Image} />
+                                    typeof(values.Avatar) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Avatar}`}/> : <Thumb file={values.Avatar} />
                                 }
-                                <button className="btn-submit" type="submit">Cập nhật</button>
+                                <button className="btn-submit" type="submit">{values.id ? "Cập nhật" : "Tạo"}</button>
                             </form>
-                        </div> */}
+                        </div>
                     </div>
                     
                 )}

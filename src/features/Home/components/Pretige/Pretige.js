@@ -35,7 +35,7 @@ function Pretige() {
         return () => {
             values.id = item.id;
             values.Title = item.Title;
-            values.Image = item.ImgUrl;
+            values.Image = item.Image;
             values.Content = item.Content;
             setReload(!reload);
             console.log(item);

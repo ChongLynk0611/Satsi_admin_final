@@ -12,7 +12,7 @@
 .F-body tr{
     width: 100%;
     display: grid;
-    grid-template-columns: 3fr 5fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 4fr 1fr 1fr;
     margin: 0;
     padding: 0;
 }
@@ -23,6 +23,21 @@
 }
 .F-icon{
     cursor: pointer;
+}
+.F-curent{
+    margin-top: 40px;
+}
+.F-subTitle{
+    margin-top: 10px;
+}
+.Input-Feedback{
+    padding: 5px 10px;
+    font-size: 14px;
+}
+.textarea-Feedback{
+    height: 200px;
+    font-size: 14px;
+    padding: 5px 10px;
 }
 /* .Input-commitment{
     font-size: 14px;

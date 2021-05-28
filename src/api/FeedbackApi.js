@@ -9,10 +9,10 @@ const feedbackApi = {
         const url = `/Feedbacks/${id}`;
         return axiosClient.delete(url);
     },
-    // postCommitment:(params) => {
-    //     const url = "/Commitment";
-    //     return axiosClient.post(url, params);
-    // },
+    postFeedback:(params) => {
+        const url = "/Feedbacks";
+        return axiosClient.post(url, params);
+    },
     // updateCommitment:(id, params) => {
     //     const url = `/Commitment/${id}`;
     //     return axiosClient.put(url, params);

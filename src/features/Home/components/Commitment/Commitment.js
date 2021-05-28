@@ -54,6 +54,7 @@ function Commitment() {
         data.append("Title", values.Title);
         data.append("Content", values.Content);
         data.append("Image", values.Image);
+        console.log(data);
         // Trường hợp thêm mới
         if(values.id === ""){
             postData(CommitmentApi.postCommitment, setCommitment, data);
