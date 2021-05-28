@@ -10,6 +10,8 @@ import Box from '@material-ui/core/Box';
 import Banner from '../../components/Banner/Banner';
 import Intro from '../../components/Intro/Intro';
 import Commitment from '../../components/Commitment/Commitment';
+import Pretige from '../../components/Pretige/Pretige';
+import Images from '../../components/Images/Image';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,6 +68,9 @@ export default function HomePage() {
           <Tab label="Banner" {...a11yProps(0)} />
           <Tab label="Giới thiệu" {...a11yProps(1)} />
           <Tab label="Cam kết" {...a11yProps(2)} />
+          <Tab label="Uy tín" {...a11yProps(3)} />
+          <Tab label="Hình ảnh" {...a11yProps(4)} />
+          <Tab label="Feedback" {...a11yProps(5)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -76,6 +81,12 @@ export default function HomePage() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Commitment />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Pretige />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <Images />
       </TabPanel>
     </div>
   );

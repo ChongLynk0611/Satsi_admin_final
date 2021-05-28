@@ -1,0 +1,42 @@
+.Pretige{
+    height: auto;
+    width: 100%;
+    padding: 40px 10%;
+}
+.P-title{
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.P-body{
+    margin-bottom: 40px;
+}
+.P-body table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.P-body tr{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 8fr 1fr 1fr;
+    margin: 0;
+    padding: 0;
+}
+.P-body td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.P-icon{
+    cursor: pointer;
+}
+
+.P-title{
+    font-size: 32px;
+    font-weight: 400;
+}
+.Input-pretige{
+    padding: 10px 5px;
+    font-size: 14px;
+}

@@ -7,6 +7,7 @@ import './Intro.css';
 
 import IntroApi from 'api/IntroApi';
 import updateData from 'hooks/updateData';
+import fetchData from 'hooks/fetchData';
 
 function Intro() {
     const [initValues, setInitValues] = useState();

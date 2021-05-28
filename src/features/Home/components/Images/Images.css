@@ -1,0 +1,22 @@
+.Images{
+    height: auto;
+    width: 100%;
+}
+
+.I-title{
+    font-size: 32px;
+    font-weight: 400;
+}
+.I-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.I-image{
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    margin-bottom: 20px;
+}
+.I-body img{
+    height: 250px;
+    width: 100%;
+}

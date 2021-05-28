@@ -1,77 +1,47 @@
-import React, {useState, useEffect} from 'react';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import { Link } from 'react-router-dom';
+import React,{useState, useEffect} from 'react'
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 import Thumb from 'components/Thumb/Thumb';
 
-import './Commitment.css';
+import './Pretige.css';
 
-import CommitmentApi from 'api/CommitmentApi';
+import PretigeApi from 'api/PretigeApi';
 import fetchData from 'hooks/fetchData';
 import deleteData from 'hooks/deleteData';
 import postData from 'hooks/postData';
 import updateData from 'hooks/updateData';
 
-function Commitment() {
-    const [commitment, setCommitment] = useState();
-    const [initaValues, setInitaValues] = useState(
-        {
-            id:"",
-            Image:"",
-            Title:"",
-            Content:"",
-            Status:""
-        }
-    );
+function Pretige() {
+    const [reload, setReload ] = useState(1);
+    const [pretiges, setPretiges] = useState();
+    const initialValues = {id:"",Title:"", ImgUrl:"", Content:""};
 
     useEffect(() => {
-        fetchData(CommitmentApi.getCommitment, setCommitment);
+        fetchData(PretigeApi.getPretige, setPretiges);
     },[]);
-    
+
     const deleteHanlde = (id) => {
         return () => {
-            deleteData(CommitmentApi.deleteCommitment, setCommitment, id);
+            deleteData(PretigeApi.deletePretige, setPretiges, id);
         }
     }
 
-    const chooseCommitment = (item, values) => {
+    const choosePretige = (item, values) => {
         return () => {
-            values.id = item.id;
-            values.Title = item.Title;
-            values.Content = item.Content;
-            values.Image = item.Image;
-            setInitaValues(item);
+            
         }
-    }
-
-    const handleSubmit = (values) => {
-        let data = new FormData();
-        data.append("Title", values.Title);
-        data.append("Content", values.Content);
-        data.append("Image", values.Image);
-        // Trường hợp thêm mới
-        if(values.id === ""){
-            postData(CommitmentApi.postCommitment, setCommitment, data);
-        }else{
-            // Trường hợp cập nhật
-            updateData(CommitmentApi.updateCommitment, setCommitment, data, values.id);
-        }
-        // values.id = "";
-        // values.Title = "";
-        // values.Content = "";
-        // values.Image = "";
     }
 
     return (
-        <div className="Commitment">
+        <div className="Pretige">
             <Formik
-                initialValues={initaValues}
-                onSubmit = {handleSubmit}
+                initialValues={initialValues}
+                // onSubmit = {handleSubmit}
             >
                 {({
                     values,
@@ -80,43 +50,40 @@ function Commitment() {
                     handleChange,
                     handleBlur,
                     handleSubmit,
-                    
                     setFieldValue
                     /* and other goodies */
                 }) => (
                     <div>
-                        <p className="C-title">Cam kết</p>
-                        <div className="C-body">
+                        <p className="P-title">Uy tín</p>
+                        <div className="P-body">
                             <table>
                                 <tr>
                                     <th>Tên</th>
-                                    <th>Nội dung</th>
                                     <th>Xóa</th>
                                     <th>Sửa</th>
                                 </tr>
                             </table>
-                            {commitment && 
-                                commitment.map((item, index) => (
-                                    <tr>
+                            {pretiges && 
+                                pretiges.map((item, index) => (
+                                    <tr key={index}>
                                         <td>{item.Title}</td>
-                                        <td>{parse(item.Content)}</td>
-                                        <td className="C-icon" onClick={deleteHanlde(item.id)} title="Xóa cam kết"><DeleteIcon /></td>
-                                        <td className="C-icon" onClick={chooseCommitment(item, values)} title="Sửa cam kết"><EditIcon /></td>
+                                        <td className="P-icon" onClick={deleteHanlde(item.id)} title="Xóa cam kết"><DeleteIcon /></td>
+                                        <td className="P-icon" onClick={choosePretige(item, values)} title="Sửa cam kết"><EditIcon /></td>
                                     </tr>   
                                 ))
 
                             }
                         </div>
-                        <div className="C-curent">
-                            <p className="C-title">Chi tiết cam kết</p>
+                        <div className="P-curent">
+                            <p className="P-title">Chi tiết uy tín</p>
                             <form onSubmit={handleSubmit} className="ImageSubmit">
-                                <p className="C-subTitle">Tiêu đề:</p>
+                                <p className="P-subTitle">Tiêu đề:</p>
                                 <input 
                                     name="Title"
                                     value={values.Title}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className="Input-commitment"
+                                    className="Input-pretige"
                                 />
                                 <p className="C-subTitle">Nội dung:</p>
                                 <CKEditor
@@ -142,7 +109,7 @@ function Commitment() {
                                     name="Image"
                                 />
                                 {
-                                    typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/> : <Thumb file={values.Image} />
+                                    typeof(values.ImgUrl) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.ImgUrl}`}/> : <Thumb file={values.Image} />
                                 }
                                 <button className="btn-submit" type="submit">Cập nhật</button>
                             </form>
@@ -153,8 +120,7 @@ function Commitment() {
 
             </Formik>
         </div>
-        
     )
 }
 
-export default Commitment
+export default Pretige
