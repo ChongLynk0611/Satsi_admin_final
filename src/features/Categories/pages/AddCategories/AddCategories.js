@@ -1,68 +1,46 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // import * as Yup from 'yup';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
 
 import Thumb from 'components/Thumb/Thumb';
 
 import './AddCategories.css';
 
 import CategoryApi from '../../../../api/CategoryApi';
-
-
+import postData from 'hooks/postData';
   
 function AddCategories(props) {
+    const [temp, setTemp] = useState();
     let history = useHistory();
-    const [content, setContent] = useState();
-    const [detail, setDetail] = useState();
-    const [submenu, setSubmenu] = useState();
 
     const initValues = {
-        CategoryName:'',
+        Title:'',
         Detail:'',
-        subMenuId:'',
-        Image:null,
-        Content:''
+        Content:'',
+        Image:'',
+        SubTitle:'',
+        ImgTitle:'',
+        ImgSubTitle:''
     }
 
-    useEffect(() => {
-        // call api submenu về và setMenu
-        const getSubmenu = async () => {
-            try {
-                const response = await CategoryApi.getSubmenu();
-                setSubmenu(response);
-                
-            } catch (error) {
-                console.log("failed fetch submenu: ", error);
-            }
-        }
-
-        getSubmenu();
-    }, []);
-
     const handleSubmit = (values) => {
-        const postCategory = async (values) => {
-            try {
-                const response = await CategoryApi.postCategory(values);
-                console.log(response);
-                history.push("/DangBai")
-            } catch (error) {
-                console.log("failed post category: ", error);
-            }
-        }
         let data = new FormData();
-        data.append("CategoryName", values.CategoryName);
+        data.append("Title", values.Title);
         data.append("Detail", values.Detail);
-        data.append("subMenuId", values.subMenuId);
-        data.append("Image", values.Image);
         data.append("Content", values.Content);
+        data.append("Image", values.Image);
+        data.append("SubTitle", values.SubTitle);
+        data.append("ImgTitle", values.ImgTitle);
+        data.append("ImgSubTitle", values.ImgSubTitle);
 
-        postCategory(data);
+        postData(CategoryApi.postCategory, setTemp, data);
+        setTimeout(() => {
+            history.push("/DangBai")
+        },1000);
+        
     }
 
     return (
@@ -85,57 +63,50 @@ function AddCategories(props) {
                         /* and other goodies */
                     }) => (
                         <form onSubmit={handleSubmit} className="formSubmit">
-                            <InputLabel id="handle" style={{fontSize:"16px"}}>Hình thức tuyển</InputLabel>
-                            {   submenu && <Select
-                                    labelId="handle"
-                                    id="handle"
-                                    value={values.subMenuId}
-                                    name="subMenuId"
-                                    onChange={handleChange}
-                                    style={{fontSize:"16px", width:"20%", margin:"10px 0"}}
-                                >
-                                    {
-                                        submenu.map((item, index) => (
-                                            <MenuItem value={item.id} key={index}>{item.Title}</MenuItem>
-                                        ))
-                                    }
-                                </Select>
-                            }   
-                            <p className="CategoryName">Ngành nghề :</p>
+                            <p className="CategoryName">Tiêu đề:</p>
                             <input 
-                                name="CategoryName"
-                                value={values.CategoryName}
+                                name="Title"
+                                value={values.Title}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 className="Input-category"
                             />
-                            <p>Nội dung:</p>
+                            <p>Chi tiết:</p>
                             <CKEditor
                                 editor={ ClassicEditor }
-                                data={content}
+                                data={values.Detail}
                                 onChange={(event, editor) => {
                                     const data = editor.getData();
-                                    setContent(data);
-                                    values.Content = data;
+                                    values.Detail = data;
                                 }}
                                 onReady={ editor => {
                                     // You can store the "editor" and use when it is needed.
                                     console.log( 'Editor is ready to use!', editor );
                                 } }
                                 // onBlur={ handleBlur }
-                                name="Content"
+                                name="Detail"
                             />
-                            <p>Chi tiết:</p>
+                            <p>Nội dung:</p>
                             <CKEditor
                                 editor={ ClassicEditor }
-                                data={detail}
+                                data={values.Content}
                                 onChange={(event, editor) => {
                                     const data = editor.getData();
-                                    setDetail(data);
-                                    values.Detail = data;
+                                    values.Content = data;
                                 }}
                                 // onBlur={ handleBlur }
-                                name="Detail"
+                                name="Content"
+                            />
+                            <p>Tiêu đề phụ:</p>
+                            <CKEditor
+                                editor={ ClassicEditor }
+                                data={values.SubTitle}
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                    values.SubTitle = data;
+                                }}
+                                // onBlur={ handleBlur }
+                                name="SubTitle"
                             />
                             <p>Ảnh nền: </p>
                             <input 
@@ -144,12 +115,35 @@ function AddCategories(props) {
                                     setFieldValue("Image", event.target.files[0]);
                                 }}
                                 name="Image"
+                                className="Input-Img"
                             />
-                            <Thumb file={values.Image} />
+                            {values.Image && <Thumb file={values.Image} />}
+                            
+                            <p>Tiêu đề hình ảnh:</p>
+                            <CKEditor
+                                editor={ ClassicEditor }
+                                data={values.ImgTitle}
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                    values.ImgTitle = data;
+                                }}
+                                // onBlur={ handleBlur }
+                                name="ImgTitle"
+                            />
+                            <p>Tiêu đề phụ hình ảnh:</p>
+                            <CKEditor
+                                editor={ ClassicEditor }
+                                data={values.ImgSubTitle}
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                    values.ImgSubTitle = data;
+                                }}
+                                // onBlur={ handleBlur }
+                                name="ImgSubTitle"
+                            />
                             <button className="btn-submit" type="submit">Đăng tải</button>
                         </form>
                     )}
-
                 </Formik>
             </div>
         </div>

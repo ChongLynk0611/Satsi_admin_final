@@ -34,7 +34,7 @@
 .LC-body tr{
     width: 100%;
     display: grid;
-    grid-template-columns: 6fr 1fr 1fr;
+    grid-template-columns: 3fr 5fr 1fr 1fr;
     margin: 0;
     padding: 0;
 }
@@ -46,4 +46,7 @@
 
 .LC-icon{
     cursor: pointer;
+}
+.LC-detail{
+    padding-left: 30px !important;
 }

@@ -14,7 +14,7 @@ const feedbackApi = {
         return axiosClient.post(url, params);
     },
     updateFeedback:(id, params) => {
-        const url = `/Commitment/${id}`;
+        const url = `/Feedbacks/${id}`;
         return axiosClient.put(url, params);
     }
 }

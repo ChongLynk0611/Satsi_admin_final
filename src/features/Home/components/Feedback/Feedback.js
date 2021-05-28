@@ -35,6 +35,7 @@ function Feedback() {
 
     const chooseFeedback = (item, values) => {
         return () => {
+            values.id = item.id;
             values.PersonName = item.PersonName;
             values.PersonDetail = item.PersonDetail;
             values.Content = item.Content;
@@ -55,7 +56,7 @@ function Feedback() {
             postData(FeedbackApi.postFeedback, setFeedbacks, data);
         }else{
             //Trường hợp cập nhật
-            
+            updateData(FeedbackApi.updateFeedback, setFeedbacks, data, values.id);
         }
     }
     return (

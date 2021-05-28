@@ -4,65 +4,35 @@ import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import Thumb from 'components/Thumb/Thumb';
+
 import './EditCategory.css';
 
 import CategoryApi from 'api/CategoryApi';
-
-class Thumb extends React.Component {
-    state = {
-      loading: false,
-      thumb: undefined,
-    };
-    componentWillReceiveProps(nextProps) {
-      if (!nextProps.file) { return; }
-  
-      this.setState({ loading: true }, () => {
-        let reader = new FileReader();
-  
-        reader.onloadend = () => {
-          this.setState({ loading: false, thumb: reader.result });
-        };
-        reader.readAsDataURL(nextProps.file);
-      });
-    }
-  
-    render() {
-      const { file } = this.props;
-      const { loading, thumb } = this.state;
-  
-      if (!file) { return null; }
-  
-      if (loading) { return <p>loading...</p>; }
-  
-      return (<img src={thumb}
-        alt={file.name}
-        className="img-thumbnail mt-2"
-        height={400}
-        width={600} />);
-    }
-}
+import {fetchDataById} from 'hooks/fetchData';
 
 function EditCategory() {
     const {id} = useParams();
     const [initialValues, setInitialValues] = useState();
 
     useEffect(() =>{
-        // Lấy category về theo id
-        const getCategory = async (id) => {
-            try {
-                const response = await CategoryApi.getCategory(id);
-                console.log(response);
-                setInitialValues({
-                    CategoryName:response.CategoryName,
-                    Content:response.Content,
-                    Detail: response.Detail,
-                    Image: response.Image
-                });
-            } catch (error) {
-                console.log("failed get category: ",error);
-            }
-        }
-        getCategory(id);
+
+        // // Lấy category về theo id
+        // const getCategory = async (id) => {
+        //     try {
+        //         const response = await CategoryApi.getCategory(id);
+        //         console.log(response);
+        //         setInitialValues({
+        //             CategoryName:response.CategoryName,
+        //             Content:response.Content,
+        //             Detail: response.Detail,
+        //             Image: response.Image
+        //         });
+        //     } catch (error) {
+        //         console.log("failed get category: ",error);
+        //     }
+        // }
+        // getCategory(id);
     },[]);
 
     const handleSubmit = (values) => {

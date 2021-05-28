@@ -11,7 +11,7 @@ import Thumb from 'components/Thumb/Thumb';
 import './Pretige.css';
 
 import PretigeApi from 'api/PretigeApi';
-import fetchData from 'hooks/fetchData';
+import { fetchData } from 'hooks/fetchData';
 import deleteData from 'hooks/deleteData';
 import postData from 'hooks/postData';
 import updateData from 'hooks/updateData';
