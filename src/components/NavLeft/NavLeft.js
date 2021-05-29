@@ -24,7 +24,7 @@ const ListItem = [
     {
         icon: <MenuIcon style={{fontSize:"24px"}}/>,
         content:"Tin tức",
-        href:"/TinTuc/Them"
+        href:"/TinTuc"
     }
 ]
 
