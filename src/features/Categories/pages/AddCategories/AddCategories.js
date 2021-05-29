@@ -21,9 +21,6 @@ function AddCategories(props) {
         Detail:'',
         Content:'',
         Image:'',
-        SubTitle:'',
-        ImgTitle:'',
-        ImgSubTitle:''
     }
 
     const handleSubmit = (values) => {
@@ -32,9 +29,6 @@ function AddCategories(props) {
         data.append("Detail", values.Detail);
         data.append("Content", values.Content);
         data.append("Image", values.Image);
-        data.append("SubTitle", values.SubTitle);
-        data.append("ImgTitle", values.ImgTitle);
-        data.append("ImgSubTitle", values.ImgSubTitle);
 
         postData(CategoryApi.postCategory, setTemp, data);
         setTimeout(() => {
@@ -97,17 +91,6 @@ function AddCategories(props) {
                                 // onBlur={ handleBlur }
                                 name="Content"
                             />
-                            <p>Tiêu đề phụ:</p>
-                            <CKEditor
-                                editor={ ClassicEditor }
-                                data={values.SubTitle}
-                                onChange={(event, editor) => {
-                                    const data = editor.getData();
-                                    values.SubTitle = data;
-                                }}
-                                // onBlur={ handleBlur }
-                                name="SubTitle"
-                            />
                             <p>Ảnh nền: </p>
                             <input 
                                 type="file"
@@ -118,29 +101,6 @@ function AddCategories(props) {
                                 className="Input-Img"
                             />
                             {values.Image && <Thumb file={values.Image} />}
-                            
-                            <p>Tiêu đề hình ảnh:</p>
-                            <CKEditor
-                                editor={ ClassicEditor }
-                                data={values.ImgTitle}
-                                onChange={(event, editor) => {
-                                    const data = editor.getData();
-                                    values.ImgTitle = data;
-                                }}
-                                // onBlur={ handleBlur }
-                                name="ImgTitle"
-                            />
-                            <p>Tiêu đề phụ hình ảnh:</p>
-                            <CKEditor
-                                editor={ ClassicEditor }
-                                data={values.ImgSubTitle}
-                                onChange={(event, editor) => {
-                                    const data = editor.getData();
-                                    values.ImgSubTitle = data;
-                                }}
-                                // onBlur={ handleBlur }
-                                name="ImgSubTitle"
-                            />
                             <button className="btn-submit" type="submit">Đăng tải</button>
                         </form>
                     )}

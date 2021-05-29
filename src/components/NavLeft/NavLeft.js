@@ -23,8 +23,8 @@ const ListItem = [
     },
     {
         icon: <MenuIcon style={{fontSize:"24px"}}/>,
-        content:"Thêm danh mục",
-        href:"/DanhMuc"
+        content:"Tin tức",
+        href:"/TinTuc/Them"
     },
     {
         icon: <MenuIcon style={{fontSize:"24px"}}/>,

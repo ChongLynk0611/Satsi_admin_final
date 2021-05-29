@@ -7,6 +7,7 @@ import './App.css';
 
 const Categories = React.lazy(() => import('features/Categories'));
 const Home = React.lazy(() => import('features/Home'));
+const News = React.lazy(() => import('features/News'));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Switch>
               <Route path="/TrangChu" component={Home} />
               <Route path="/DangBai" component={Categories}/>
+              <Route path="/TinTuc" component={News}/>
             </Switch>
           </Suspense>
         </div>

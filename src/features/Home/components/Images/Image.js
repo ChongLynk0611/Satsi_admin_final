@@ -38,7 +38,7 @@ function Image() {
             <div className="I-body">
                 {images && images.map((image, index) => (
                     <div className="I-image" key={index}>
-                        <img src={`${process.env.REACT_APP_API_URL}/${image.ImageUrl}`}/>
+                        <img src={`${process.env.REACT_APP_API_URL}/${image.Image}`}/>
                         <div 
                             className="btn_delete" 
                             title="Xóa  hình ảnh"
