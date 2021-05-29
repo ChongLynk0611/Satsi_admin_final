@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import * as Yup from 'yup';
+import * as yup from 'yup';
 
 import Thumb from 'components/Thumb/Thumb';
 
@@ -15,13 +15,13 @@ import postData from 'hooks/postData';
 function AddCategories(props) {
     const [temp, setTemp] = useState();
     let history = useHistory();
-
-    const initValues = {
-        Title:'',
-        Detail:'',
-        Content:'',
-        Image:'',
-    }
+    const initValues = {Title:'',Detail:'',Content:'',Image:null}
+    const validationSchema = yup.object().shape({
+        Title: yup.string().required('Hãy nhập tiêu đề '),
+        Detail: yup.string().required('Hãy nhập chi tiết'),
+        Content: yup.string().required('Hãy nhập nội dung'),
+        Image: yup.mixed().required('Hãy chọn file trước khi đăng tải')
+    })
 
     const handleSubmit = (values) => {
         let data = new FormData();
@@ -43,6 +43,7 @@ function AddCategories(props) {
                 <h2>Nội dung tuyển dụng</h2>
                 <Formik
                     initialValues={initValues}
+                    validationSchema = {validationSchema}
                     onSubmit = {handleSubmit}
                 >
                     {({
@@ -56,7 +57,7 @@ function AddCategories(props) {
                         setFieldValue
                         /* and other goodies */
                     }) => (
-                        <form onSubmit={handleSubmit} className="formSubmit">
+                        <form onSubmit={handleSubmit} className="FormCategories">
                             <p className="CategoryName">Tiêu đề:</p>
                             <input 
                                 name="Title"
@@ -65,6 +66,7 @@ function AddCategories(props) {
                                 onBlur={handleBlur}
                                 className="Input-category"
                             />
+                            {errors["Title"] && <p className="error">{errors["Title"]}</p>}
                             <p>Chi tiết:</p>
                             <CKEditor
                                 editor={ ClassicEditor }
@@ -80,6 +82,7 @@ function AddCategories(props) {
                                 // onBlur={ handleBlur }
                                 name="Detail"
                             />
+                            {errors["Detail"] && <p className="error">{errors["Detail"]}</p>}
                             <p>Nội dung:</p>
                             <CKEditor
                                 editor={ ClassicEditor }
@@ -91,6 +94,7 @@ function AddCategories(props) {
                                 // onBlur={ handleBlur }
                                 name="Content"
                             />
+                            {errors["Content"] && <p className="error">{errors["Content"]}</p>}
                             <p>Ảnh nền: </p>
                             <input 
                                 type="file"
@@ -100,6 +104,7 @@ function AddCategories(props) {
                                 name="Image"
                                 className="Input-Img"
                             />
+                            {errors["Image"] && <p className="error">{errors["Image"]}</p>}
                             {values.Image && <Thumb file={values.Image} />}
                             <button className="btn-submit" type="submit">Đăng tải</button>
                         </form>

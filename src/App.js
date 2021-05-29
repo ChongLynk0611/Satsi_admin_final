@@ -17,7 +17,7 @@ function App() {
         <div className="App-body">
           <Suspense fallback={<div>loading...</div>}>
             <Switch>
-              <Route path="/TrangChu" component={Home} />
+              <Route exact path="/" component={Home} />
               <Route path="/DangBai" component={Categories}/>
               <Route path="/TinTuc" component={News}/>
             </Switch>

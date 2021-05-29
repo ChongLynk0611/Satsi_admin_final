@@ -8,4 +8,22 @@
     font-size: 32px;
     font-weight: 400;
     margin-bottom: 40px;
+    text-align: center;
+}
+.FormEditCategories p{
+    margin-top: 20px;
+}
+.FormEditCategories{
+    display: flex;
+    flex-direction: column;
+}
+.FormEditCategories img{
+    width: 50%;
+    height: 300px;
+}
+.btn-submit{
+    width: 100px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
 }

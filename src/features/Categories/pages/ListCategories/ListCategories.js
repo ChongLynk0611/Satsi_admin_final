@@ -27,10 +27,10 @@ function ListCategories() {
     return (
         <div className="ListCategories">
             <p className="LC-title">Danh sách bài đăng</p>
-            <a className="btn_Them" href="/DangBai/Them">
+            <Link className="btn_Them" to="/DangBai/Them">
                 <AddIcon style={{fontSize:"18px", marginRight:"3px"}}/>
                 <span>Thêm mới</span>
-            </a>
+            </Link>
             <div className="LC-body">
                 <table>
                     <tr>
@@ -42,7 +42,6 @@ function ListCategories() {
                 </table>
                 {categories && 
                     categories.map((category, index) => (
-                        // <Category category={category} key={index} />
                         <tr>
                             <td>{category.Title}</td>
                             <td className="LC-detail">{parse(category.Detail)}</td>

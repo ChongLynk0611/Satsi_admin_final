@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Formik } from 'formik';
+import * as yup from 'yup';
 
 import Thumb from 'components/Thumb/Thumb';
 
@@ -31,6 +32,10 @@ function Image() {
         postData(ImageApi.postImage, setImages, data);
         values.Image = "";
     }
+    
+    const validationSchema = yup.object().shape({
+        Image: yup.mixed().required('Hãy chọn file trước khi đăng tải')
+    })
 
     return (
         <div className="Images">
@@ -51,10 +56,12 @@ function Image() {
                 <p>Thêm hình ảnh :</p>
                 <Formik
                     initialValues={initialValues}
+                    validationSchema = {validationSchema}
                     onSubmit = {hanldeSubmit}
                 >
                     {({
                         values,
+                        errors,
                         handleSubmit,
                         setFieldValue
                         /* and other goodies */
@@ -67,6 +74,7 @@ function Image() {
                                 }}
                                 name="Image"
                             />
+                            {errors["Image"] && <p className="error">{errors["Image"]}</p>}
                             {values.Image && <Thumb file={values.Image} />}
                             <button className="btn-submit" type="submit">Đăng tải</button>
                         </form>

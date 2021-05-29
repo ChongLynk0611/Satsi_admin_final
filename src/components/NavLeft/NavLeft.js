@@ -14,7 +14,7 @@ const ListItem = [
     {
         icon:<HomeIcon style={{fontSize:"24px"}} />,
         content:"Trang chủ",
-        href:"/TrangChu"
+        href:"/"
     },
     {
         icon: <PostAddIcon style={{fontSize:"24px"}}/>,
@@ -25,18 +25,7 @@ const ListItem = [
         icon: <MenuIcon style={{fontSize:"24px"}}/>,
         content:"Tin tức",
         href:"/TinTuc/Them"
-    },
-    {
-        icon: <MenuIcon style={{fontSize:"24px"}}/>,
-        content:"Thêm danh mục",
-        href:"/DanhMuc"
-    },
-    {
-        icon: <MenuIcon style={{fontSize:"24px"}}/>,
-        content:"Thêm danh mục",
-        href:"/DanhMuc"
-    },
-    
+    }
 ]
 
 function NavLeft(props) {

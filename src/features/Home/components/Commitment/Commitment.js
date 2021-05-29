@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
+import AddIcon from '@material-ui/icons/Add';
+import * as yup from 'yup';
 
 import Thumb from 'components/Thumb/Thumb';
 
@@ -19,15 +20,14 @@ import updateData from 'hooks/updateData';
 
 function Commitment() {
     const [commitment, setCommitment] = useState();
-    const [initaValues, setInitaValues] = useState(
-        {
-            id:"",
-            Image:"",
-            Title:"",
-            Content:"",
-            Status:""
-        }
-    );
+    const [reload, setReload] = useState(true);
+    const [initaValues, setInitaValues] = useState({id:"",Image:null,Title:"",Content:"",Status:""});
+
+    const validationSchema = yup.object().shape({
+        Image: yup.mixed().required('Hãy chọn file trước khi đăng tải'),
+        Title: yup.string().required('Hãy nhập tiêu đề '),
+        Content: yup.string().required('Hãy nhập nội dung')
+    })
 
     useEffect(() => {
         fetchData.fetchData(CommitmentApi.getCommitment, setCommitment);
@@ -62,31 +62,43 @@ function Commitment() {
             // Trường hợp cập nhật
             updateData(CommitmentApi.updateCommitment, setCommitment, data, values.id);
         }
-        // values.id = "";
-        // values.Title = "";
-        // values.Content = "";
-        // values.Image = "";
+        values.id = "";
+        values.Title = "";
+        values.Content = "";
+        values.Image = null;
+    }
+
+    const Addhanlde = (values) => {
+        return () => {
+            values.id = "";
+            values.Title = "";
+            values.Content = "";
+            values.Image = null;
+            setReload(!reload);
+        }
     }
 
     return (
         <div className="Commitment">
             <Formik
                 initialValues={initaValues}
+                validationSchema = {validationSchema}
                 onSubmit = {handleSubmit}
             >
                 {({
                     values,
                     errors,
-                    touched,
                     handleChange,
                     handleBlur,
                     handleSubmit,
-                    
                     setFieldValue
-                    /* and other goodies */
                 }) => (
                     <div>
                         <p className="C-title">Cam kết</p>
+                        <div className="btn_Them" onClick={Addhanlde(values)}>
+                            <AddIcon style={{fontSize:"18px", marginRight:"3px"}}/>
+                            <span>Thêm mới</span>
+                        </div>
                         <div className="C-body">
                             <table>
                                 <tr>
@@ -119,6 +131,7 @@ function Commitment() {
                                     onBlur={handleBlur}
                                     className="Input-commitment"
                                 />
+                                {errors["Title"] && <p className="error">{errors["Title"]}</p>}
                                 <p className="C-subTitle">Nội dung:</p>
                                 <CKEditor
                                     editor={ ClassicEditor }
@@ -128,12 +141,12 @@ function Commitment() {
                                         values.Content = data;
                                     }}
                                     onReady={ editor => {
-                                        // You can store the "editor" and use when it is needed.
                                         console.log( 'Editor is ready to use!', editor );
                                     } }
                                     // onBlur={ handleBlur }
                                     name="Content"
                                 />
+                                {errors["Content"] && <p className="error">{errors["Content"]}</p>}
                                 <p className="C-subTitle">Ảnh nền: </p>
                                 <input 
                                     type="file"
@@ -142,6 +155,7 @@ function Commitment() {
                                     }}
                                     name="Image"
                                 />
+                                {errors["Image"] && <p className="error">{errors["Image"]}</p>}
                                 {
                                     typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/> : <Thumb file={values.Image} />
                                 }

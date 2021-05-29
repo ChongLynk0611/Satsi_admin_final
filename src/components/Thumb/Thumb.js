@@ -24,9 +24,9 @@ class Thumb extends React.Component {
       const { file } = this.props;
       const { loading, thumb } = this.state;
   
-      // if (!file) { return null; }
+      if (!file) { return null; }
   
-      // if (loading) { return <p>loading...</p>; }
+      if (loading) { return <p>loading...</p>; }
   
       return (<img src={thumb}
         alt={file.name}

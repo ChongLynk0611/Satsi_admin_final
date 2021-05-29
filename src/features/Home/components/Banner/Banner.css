@@ -5,6 +5,7 @@
 .B-title{
     font-size: 32px;
     padding: 10px;
+    text-align: center;
 }
 .B-body{
     display: grid;
@@ -16,24 +17,33 @@
     margin: 3%;
 }
 .BannerItem{
-    display: flex;
+    display: grid;
+    grid-template-columns: 12fr 1fr;
     align-items: center;
 }
+
 .btn_delete{
     cursor: pointer;
 }
+.add-banner{
+    padding: 20px;
+}
 .add-banner img{
-    height: auto;
-    width: auto;
-
+    height: 200px;
+    width: 50%;
+    margin: 20px 0 0 0;
 }
 .btn-submit{
     padding: 10px;
     cursor: pointer;
     margin-top: 20px;
+    width: 100px;
 }
 .ImageSubmit{
     display: flex;
     flex-direction: column;
     width: 50%;
+}
+.error{
+    color: red;
 }

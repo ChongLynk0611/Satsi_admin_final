@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Formik } from 'formik';
+import * as yup from 'yup';
 
 import Thumb from 'components/Thumb/Thumb';
 
@@ -16,7 +17,11 @@ function Banner() {
     const initValues = {
         Image:""
     }
- 
+    
+    const validationSchema = yup.object().shape({
+        Image: yup.mixed().required('Hãy chọn file trước khi đăng tải')
+    })
+
     useEffect(() => {
        fetchData.fetchData(BannerApi.getBanner, setImages);
     },[]);
@@ -53,13 +58,14 @@ function Banner() {
                 <p>Thêm ảnh banner :</p>
                 <Formik
                     initialValues={initValues}
+                    validationSchema = {validationSchema}
                     onSubmit = {hanldeSubmit}
                 >
                     {({
                         values,
+                        errors,
                         handleSubmit,
                         setFieldValue
-                        /* and other goodies */
                     }) => (
                         <form onSubmit={handleSubmit} className="ImageSubmit">
                             <input 
@@ -69,6 +75,7 @@ function Banner() {
                                 }}
                                 name="Image"
                             />
+                            {errors["Image"] && <p className="error">{errors["Image"]}</p>}
                             {values.Image && <Thumb file={values.Image} />}
                             <button className="btn-submit" type="submit">Đăng tải</button>
                         </form>

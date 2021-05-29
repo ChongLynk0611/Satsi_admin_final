@@ -7,6 +7,19 @@
     font-size: 32px;
     margin-bottom: 20px;
     font-weight: 400;
+    text-align: center;
+}
+.btn_Them{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    width: 120px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 20px 0 20px;
+    cursor: pointer;
 }
 .C-body{
     margin-bottom: 40px;
@@ -16,6 +29,11 @@
 }
 .ImageSubmit{
     width: 100%;
+}
+.ImageSubmit img{
+    height: 300px;
+    width: 50%;
+    margin: 20px 0;
 }
 .F-title{
     font-size: 32px;
@@ -47,4 +65,7 @@
 }
 .C-subTitle{
     margin-top: 10px;
+}
+.error{
+    color: red;
 }

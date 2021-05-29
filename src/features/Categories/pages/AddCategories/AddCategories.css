@@ -2,7 +2,6 @@
     height: auto;
     width: 100%;
     padding: 40px 10%;
-    background-color: #f4f5f7;
 }
 
 .Admin-body{
@@ -12,16 +11,14 @@
 .Admin-body h2{
     font-size: 32px;
     font-weight: 400;
+    text-align: center;
 }
-/* 
-.formSubmit{
-    font-size: 16px;
+
+.FormCategories{
     display: flex;
     flex-direction: column;
-    width: 80%;
-    margin: 0 10%;
-} */
-.formSubmit p{
+}
+.FormCategories p{
     margin: 20px 0 5px;
 }
 .Input-category{
@@ -31,17 +28,19 @@
     padding: 0 5px;
     margin-bottom: 10px;
 }
-.formSubmit .btn-submit{
-    margin: 10px 0;
+.FormCategories .btn-submit{
+    margin: 20px 0;
     font-size: 16px;
     padding: 10px;
     width: 20%;
+    cursor: pointer;
 }
 
 .ck-content{
     padding: 0 30px !important;
 }
-.Input-Img{
-    width: 100%;
+
+.error{
+    color: red;
 }
 
