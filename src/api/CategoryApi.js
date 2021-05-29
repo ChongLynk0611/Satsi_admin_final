@@ -1,16 +1,12 @@
 import axiosClient from './axiosClient';
 
 const categoryApi = {
-    getSubmenu: (param) => {
-        const url ="/SubMenu";  // Nếu params là 1 string != null thì url = `Submenu/${param}`
+    getCategories:() => {
+        const url ='/Categories';
         return axiosClient.get(url);
     },
-    getCategories: () => {
-        const url = "/Categories";
-        return axiosClient.get(url);
-    },
-    getCategory: (params) => {
-        const url = `/Categories/${params}`;
+    getCategory:(id) => {
+        const url=`/Categories/${id}`;
         return axiosClient.get(url);
     },
     postCategory:(params) => {
@@ -21,7 +17,7 @@ const categoryApi = {
         const url =`/Categories/${params}`;
         return axiosClient.delete(url);
     },
-    updateCategory: (id,params) => {
+    updateCategory: (id ,params) => {
         const url = `/Categories/${id}`;
         return axiosClient.put(url, params);
     }

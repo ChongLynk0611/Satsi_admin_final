@@ -18,7 +18,7 @@ function Banner() {
     }
  
     useEffect(() => {
-       fetchData(BannerApi.getBanner, setImages);
+       fetchData.fetchData(BannerApi.getBanner, setImages);
     },[]);
 
     const deleteHandle = (id) => {

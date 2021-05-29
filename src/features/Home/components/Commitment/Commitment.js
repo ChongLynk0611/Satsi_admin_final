@@ -30,7 +30,7 @@ function Commitment() {
     );
 
     useEffect(() => {
-        fetchData(CommitmentApi.getCommitment, setCommitment);
+        fetchData.fetchData(CommitmentApi.getCommitment, setCommitment);
     },[]);
     
     const deleteHanlde = (id) => {

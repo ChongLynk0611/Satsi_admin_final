@@ -15,7 +15,7 @@ function ListCategories() {
     const [categories, setCategories] = useState();
 
     useEffect(() => {
-        fetchData(CategoryApi.getCategories, setCategories);
+        fetchData.fetchData(CategoryApi.getCategories, setCategories);
     },[])
  
     const deleteHandle = (id) => {

@@ -16,7 +16,7 @@ function Image() {
     const initialValues = {Image:""};
 
     useEffect(() => {
-        fetchData(ImageApi.getImages, setImages);
+        fetchData.fetchData(ImageApi.getImages, setImages);
     },[]);
 
     const deleteHandle = (id) => {

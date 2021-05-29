@@ -24,7 +24,7 @@ function Feedback() {
 
 
     useEffect(() => {
-        fetchData(FeedbackApi.getFeedbacks, setFeedbacks);
+        fetchData.fetchData(FeedbackApi.getFeedbacks, setFeedbacks);
     },[]);
 
     const deleteHanlde = (id) =>{

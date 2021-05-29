@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -9,125 +9,138 @@ import Thumb from 'components/Thumb/Thumb';
 import './EditCategory.css';
 
 import CategoryApi from 'api/CategoryApi';
-import {fetchDataById} from 'hooks/fetchData';
+import fetchData from 'hooks/fetchData';
+import updateData from 'hooks/updateData';
 
 function EditCategory() {
     const {id} = useParams();
+    let history = useHistory();
     const [initialValues, setInitialValues] = useState();
+    const [temp, setTemp] = useState();
 
     useEffect(() =>{
-
-        // // Lấy category về theo id
-        // const getCategory = async (id) => {
-        //     try {
-        //         const response = await CategoryApi.getCategory(id);
-        //         console.log(response);
-        //         setInitialValues({
-        //             CategoryName:response.CategoryName,
-        //             Content:response.Content,
-        //             Detail: response.Detail,
-        //             Image: response.Image
-        //         });
-        //     } catch (error) {
-        //         console.log("failed get category: ",error);
-        //     }
-        // }
-        // getCategory(id);
+        fetchData.fetchDataById(CategoryApi.getCategory, setInitialValues, id);
     },[]);
 
     const handleSubmit = (values) => {
-        const updateCategory = async (values) => {
-            try {
-                const response = await CategoryApi.updateCategory(id, values);
-                console.log(response);
-            } catch (error) {
-                console.log("failed upate category: ", error);
-            }
-        }
-
         let data = new FormData();
-        data.append("CategoryName", values.CategoryName);
+        data.append("Title", values.Title);
         data.append("Detail", values.Detail);
-        data.append("subMenuId", values.subMenuId);
-        data.append("Image", values.Image);
         data.append("Content", values.Content);
+        data.append("Image", values.Image);
+        data.append("SubTitle", values.SubTitle);
+        data.append("ImgTitle", values.ImgTitle);
+        data.append("ImgSubTitle", values.ImgSubTitle);
 
-        updateCategory(data);
+        updateData(CategoryApi.updateCategory, setTemp, data, values.id);
+        setTimeout(() => {
+            history.push("/DangBai")
+        },1000);
     }
 
     return (
         <div className="EditCategory">
             <p className="EC-title">Cập nhật bài đăng</p>
             {initialValues && 
-                <Formik
-                    initialValues={initialValues}
-                    onSubmit = {handleSubmit}
-                >
-                    {({
-                        values,
-                        errors,
-                        touched,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        isSubmitting,
-                        setFieldValue
-                        /* and other goodies */
-                    }) => (
-                        <form onSubmit={handleSubmit} className="formSubmit">  
-                            <p className="CategoryName">Ngành nghề :</p>
-                            <input 
-                                name="CategoryName"
-                                value={values.CategoryName}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                className="Input-category"
-                            />
-                            <p>Nội dung:</p>
-                            <CKEditor
-                                editor={ ClassicEditor }
-                                data={values.Content}
-                                onChange={(event, editor) => {
-                                    const data = editor.getData();
-                                    values.Content = data;
-                                }}
-                                onReady={ editor => {
-                                    // You can store the "editor" and use when it is needed.
-                                    console.log( 'Editor is ready to use!', editor );
-                                } }
-                                // onBlur={ handleBlur }
-                                name="Content"
-                            />
-                            <p>Chi tiết:</p>
-                            <CKEditor
-                                editor={ ClassicEditor }
-                                data={values.Detail}
-                                onChange={(event, editor) => {
-                                    const data = editor.getData();
-                                    values.Detail = data;
-                                }}
-                                // onBlur={ handleBlur }
-                                name="Detail"
-                            />
-                            <p>Ảnh nền: </p>
-                            <input 
-                                type="file"
-                                onChange={(event) => {
-                                    setFieldValue("Image", event.target.files[0]);
-                                }}
-                                name="Image"
-                            />
-                            {
-                                typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/>:(
-                                    <Thumb file={values.Image} />
-                                )
-                            }
-                            <button className="btn-submit" type="submit">Cập nhật</button>
-                        </form>
-                    )}
-
-                </Formik>
-            }      
+            <Formik
+                initialValues={initialValues}
+                onSubmit = {handleSubmit}
+            >
+                {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                    isSubmitting,
+                    setFieldValue
+                    /* and other goodies */
+                }) => (
+                    <form onSubmit={handleSubmit} className="formSubmit">
+                        <p className="CategoryName">Tiêu đề:</p>
+                        <input 
+                            name="Title"
+                            value={values.Title}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className="Input-category"
+                        />
+                        <p>Chi tiết:</p>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.Detail}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.Detail = data;
+                            }}
+                            onReady={ editor => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log( 'Editor is ready to use!', editor );
+                            } }
+                            // onBlur={ handleBlur }
+                            name="Detail"
+                        />
+                        <p>Nội dung:</p>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.Content}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.Content = data;
+                            }}
+                            // onBlur={ handleBlur }
+                            name="Content"
+                        />
+                        <p>Tiêu đề phụ:</p>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.SubTitle}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.SubTitle = data;
+                            }}
+                            // onBlur={ handleBlur }
+                            name="SubTitle"
+                        />
+                        <p>Ảnh nền: </p>
+                        <input 
+                            type="file"
+                            onChange={(event) => {
+                                setFieldValue("Image", event.target.files[0]);
+                            }}
+                            name="Image"
+                            className="Input-Img"
+                        />
+                        {typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/> : <Thumb file={values.Image} />}
+                        
+                        <p>Tiêu đề hình ảnh:</p>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.ImgTitle}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.ImgTitle = data;
+                            }}
+                            // onBlur={ handleBlur }
+                            name="ImgTitle"
+                        />
+                        <p>Tiêu đề phụ hình ảnh:</p>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.ImgSubTitle}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.ImgSubTitle = data;
+                            }}
+                            // onBlur={ handleBlur }
+                            name="ImgSubTitle"
+                        />
+                        <button className="btn-submit" type="submit">Đăng tải</button>
+                    </form>
+                )}
+            </Formik>
+            }   
         </div>
     )
 }
