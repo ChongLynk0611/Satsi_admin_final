@@ -5,10 +5,10 @@ const newsApi = {
         const url ='/posts';
         return axiosClient.get(url);
     },
-    // getCategory:(id) => {
-    //     const url=`/Categories/${id}`;
-    //     return axiosClient.get(url);
-    // },
+    getNewsById:(id) => {
+        const url=`/posts/${id}`;
+        return axiosClient.get(url);
+    },
     postNews:(params) => {
         const url= '/posts';
         return axiosClient.post(url, params);
@@ -17,10 +17,10 @@ const newsApi = {
         const url =`/posts/${params}`;
         return axiosClient.delete(url);
     },
-    // updateCategory: (id ,params) => {
-    //     const url = `/Categories/${id}`;
-    //     return axiosClient.put(url, params);
-    // }
+    updateNews: (id ,params) => {
+        const url = `/posts/${id}`;
+        return axiosClient.put(url, params);
+    }
 }
 
 export default newsApi;

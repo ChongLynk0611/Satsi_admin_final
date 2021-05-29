@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
 
 import NavItem from 'components/NavItem/NavItem'
 
@@ -25,7 +26,13 @@ const ListItem = [
         icon: <MenuIcon style={{fontSize:"24px"}}/>,
         content:"Tin tức",
         href:"/TinTuc"
-    }
+    },
+    {
+        icon: <InfoIcon style={{fontSize:"24px"}}/>,
+        content:"Về Satsi",
+        href:"/VeSatsi"
+    },
+
 ]
 
 function NavLeft(props) {

@@ -1,20 +1,22 @@
-import React,{useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React,{useState, useEffect} from 'react';
+import {useParams, useHistory} from 'react-router-dom';
 import { Formik} from 'formik';
 import * as yup from 'yup';
 
 import Editor from '../../components/Editor/Editor';
 import Thumb from 'components/Thumb/Thumb';
 
-import './AddNews.css';
+import './EditNews.css';
 
 import NewsApi from 'api/NewsApi';
-import postData from 'hooks/postData';
+import fetchData from 'hooks/fetchData';
+import updateData from 'hooks/updateData';
 
-function AddNews() {
-    const [temp, setTemp] = useState();
+function EditNews() {
+    const {id} = useParams();
     let history = useHistory();
-    const initValues = {Title:'',Content:'', SubContent:'', Image:null};
+    const [temp, setTemp] = useState();
+    const [initialValues, setInitialValues] = useState();
     const validationSchema = yup.object().shape({
         Title: yup.string().required('Hãy nhập tiêu đề '),
         SubContent: yup.string().required('Hãy nhập tiêu đề phụ'),
@@ -22,23 +24,27 @@ function AddNews() {
         Image: yup.mixed().required('Hãy chọn file trước khi đăng tải')
     })
 
+    useEffect(() => {
+        fetchData.fetchDataById(NewsApi.getNewsById, setInitialValues, id);    
+    }, []);
+
     const onSubmit = (values) => {
         let data = new FormData();
         data.append("Title", values.Title);
         data.append("Content", values.Content);
         data.append("SubContent", values.SubContent);
         data.append("Image", values.Image);
-        postData(NewsApi.postNews, setTemp, data);
+        updateData(NewsApi.updateNews, setTemp, data, values.id);
         setTimeout(() => {
             history.push("/TinTuc");
-        },2500);
+        },2000);
     }
     
     return (
-        <div className="AddNews">
-            <p className = "N-title">Nội dung tin tức</p>
-            <Formik 
-                initialValues={initValues}
+        <div className="EditNews">
+            <p className = "EN-title">Nội dung tin tức</p>
+            {initialValues && <Formik 
+                initialValues={initialValues}
                 validationSchema = {validationSchema}
                 onSubmit = {onSubmit}
             >
@@ -51,7 +57,7 @@ function AddNews() {
                     setFieldValue
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit} className = "FormNews">
+                    <form onSubmit={handleSubmit} className = "FormEditNews">
                         <p className="N-text">Tiêu đề:</p>
                         <input 
                             name="Title"
@@ -80,21 +86,21 @@ function AddNews() {
                             className="Input-Img"
                         />
                         {errors["Image"] && <p className="error">{errors["Image"]}</p>}
-                        {values.Image && <Thumb file={values.Image} />}
+                        {typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/> : <Thumb file={values.Image} />}
                         <p className="N-text">Nội dung:</p>
                         <Editor
                             values = {values.Content}
+                            defaultValue = {values.Content}
                             name = "Content"
                             onChange = {v => setFieldValue('Content', v)}
-
                         />
                         {errors["Content"] && <p className="error">{errors["Content"]}</p>}
-                        <button className="btn-submit" type="submit">Đăng bài</button>
+                        <button className="btn-submit" type="submit">Cập nhật</button>
                     </form>
                 )}
-            </Formik>
+            </Formik>}
         </div>  
     )
 }
 
-export default AddNews
+export default EditNews;

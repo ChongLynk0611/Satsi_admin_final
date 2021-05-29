@@ -8,6 +8,7 @@ import './App.css';
 const Categories = React.lazy(() => import('features/Categories'));
 const Home = React.lazy(() => import('features/Home'));
 const News = React.lazy(() => import('features/News'));
+const About = React.lazy(() => import('features/About'));
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route path="/DangBai" component={Categories}/>
               <Route path="/TinTuc" component={News}/>
+              <Route path="/VeSatsi" component={About}/>
             </Switch>
           </Suspense>
         </div>
