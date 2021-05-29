@@ -1,0 +1,14 @@
+.View{
+    height: auto;
+    width: 100%;
+    padding: 40px 10%;
+}
+.V-title{
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.btn-submit{
+    padding: 10px 20px;
+    margin-top: 20px;
+}

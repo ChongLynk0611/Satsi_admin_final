@@ -3,7 +3,7 @@ import {useParams, useHistory} from 'react-router-dom';
 import { Formik} from 'formik';
 import * as yup from 'yup';
 
-import Editor from '../../components/Editor/Editor';
+import Editor from '../../../../components/Editor/Editor';
 import Thumb from 'components/Thumb/Thumb';
 
 import './EditNews.css';
