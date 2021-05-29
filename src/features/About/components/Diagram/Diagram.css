@@ -1,0 +1,49 @@
+.Diagram{
+    height: auto;
+    width: 100%;
+}
+.D-title{
+    font-size: 32px;
+    padding: 10px;
+    text-align: center;
+}
+.D-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.Diagram img{
+    height: 200px;
+    width: 94%;
+    margin: 3%;
+}
+.DiagramItem{
+    display: grid;
+    grid-template-columns: 12fr 1fr;
+    align-items: center;
+}
+
+.btn_delete{
+    cursor: pointer;
+}
+.add-Diagram{
+    padding: 20px;
+}
+.add-Diagram img{
+    height: 200px;
+    width: 50%;
+    margin: 20px 0 0 0;
+}
+.btn-submit{
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100px;
+}
+.FormDiagram{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.error{
+    color: red;
+}

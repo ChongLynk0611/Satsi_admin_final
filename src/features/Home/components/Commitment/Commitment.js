@@ -89,7 +89,6 @@ function Commitment() {
                     values,
                     errors,
                     handleChange,
-                    handleBlur,
                     handleSubmit,
                     setFieldValue
                 }) => (
@@ -128,7 +127,6 @@ function Commitment() {
                                     name="Title"
                                     value={values.Title}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}
                                     className="Input-commitment"
                                 />
                                 {errors["Title"] && <p className="error">{errors["Title"]}</p>}
@@ -140,10 +138,6 @@ function Commitment() {
                                         const data = editor.getData();
                                         values.Content = data;
                                     }}
-                                    onReady={ editor => {
-                                        console.log( 'Editor is ready to use!', editor );
-                                    } }
-                                    // onBlur={ handleBlur }
                                     name="Content"
                                 />
                                 {errors["Content"] && <p className="error">{errors["Content"]}</p>}

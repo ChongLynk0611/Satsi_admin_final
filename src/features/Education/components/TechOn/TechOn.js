@@ -4,31 +4,31 @@ import * as yup from 'yup';
 
 import Editor from 'components/Editor/Editor';
 
-import './Mission.css';
+import './TechOn.css';
 
-import MissionApi from 'api/MissionApi';
+import TeachOnApi from 'api/TechOn';
 import updateData from 'hooks/updateData';
 import fetchData from 'hooks/fetchData';
 
-function View() {
+function TechOn() {
     const [initialvalues, setInitialValues] = useState();
 
     const validationSchema = yup.object().shape({
+        Title: yup.string().required('Hãy nhập tiêu đề'),
         Content: yup.string().required('Hãy nhập nội dung')
     })
 
     useEffect(() => {
-        fetchData.fetchData(MissionApi.getMission, setInitialValues);
+        fetchData.fetchData(TeachOnApi.getTeachOnl, setInitialValues);
     },[]);
 
     const onSubmit = (values) => {
-        console.log(values)
-        updateData(MissionApi.updateMission, setInitialValues, values, values.id);
+        updateData(TeachOnApi.updateTeachOnl, setInitialValues, values, values.id);
     }
-    
+
     return (
-        <div className="Mission">
-            <p className="M-title">Sứ mệnh - Giá trị cốt lõi</p>
+        <div className="TechOn">
+            <p className="TO-title">Đào tạo tiếng Đức</p>
             {initialvalues && <Formik 
                 initialValues={initialvalues[0]}
                 validationSchema = {validationSchema}
@@ -37,11 +37,20 @@ function View() {
                 {({
                     values,
                     errors,
+                    handleChange,
                     handleSubmit,
                     setFieldValue
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit} className = "FormNews">
+                    <form onSubmit={handleSubmit} className = "FormTechOn">
+                        <p className="TO-SubTitle">Tiêu đề:</p>
+                        <input 
+                            name="Title"
+                            value={values.Title}
+                            onChange={handleChange}
+                            className="TO-Input"
+                        />
+                        <p className="TO-SubTitle">Nội dung:</p>
                         <Editor
                             values = {values.Content}
                             defaultValue = {values.Content}
@@ -57,4 +66,4 @@ function View() {
     )
 }
 
-export default View
+export default TechOn;

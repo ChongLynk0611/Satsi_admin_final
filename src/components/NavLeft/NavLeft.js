@@ -4,6 +4,8 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import DirectionsIcon from '@material-ui/icons/Directions';
+import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 
 import NavItem from 'components/NavItem/NavItem'
 
@@ -31,6 +33,16 @@ const ListItem = [
         icon: <InfoIcon style={{fontSize:"24px"}}/>,
         content:"Về Satsi",
         href:"/VeSatsi"
+    },
+    {
+        icon: <DirectionsIcon style={{fontSize:"24px"}}/>,
+        content:"Lộ trình",
+        href:"/LoTrinh"
+    },
+    {
+        icon: <CastForEducationIcon style={{fontSize:"24px"}}/>,
+        content:"Đào tạo",
+        href:"/DaoTao"
     },
 
 ]

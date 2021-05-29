@@ -1,0 +1,22 @@
+.TeachGerman{
+    height: auto;
+    width: 100%;
+    padding: 40px 10%;
+}
+.TG-title{
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.TG-SubTitle{
+    margin: 20px 0 10px;
+}
+.TG-Input{
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+.btn-submit{
+    padding: 10px 20px;
+    margin-top: 20px;
+}

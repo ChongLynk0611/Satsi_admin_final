@@ -4,31 +4,31 @@ import * as yup from 'yup';
 
 import Editor from 'components/Editor/Editor';
 
-import './Mission.css';
+import './TeachGerman.css';
 
-import MissionApi from 'api/MissionApi';
+import TeachGermanApi from 'api/TeachGermanApi';
 import updateData from 'hooks/updateData';
 import fetchData from 'hooks/fetchData';
 
-function View() {
+function TeachGerman() {
     const [initialvalues, setInitialValues] = useState();
 
     const validationSchema = yup.object().shape({
+        Title: yup.string().required('Hãy nhập tiêu đề'),
         Content: yup.string().required('Hãy nhập nội dung')
     })
 
     useEffect(() => {
-        fetchData.fetchData(MissionApi.getMission, setInitialValues);
+        fetchData.fetchData(TeachGermanApi.getTeachGerman, setInitialValues);
     },[]);
 
     const onSubmit = (values) => {
-        console.log(values)
-        updateData(MissionApi.updateMission, setInitialValues, values, values.id);
+        updateData(TeachGermanApi.updateTeachGerman, setInitialValues, values, values.id);
     }
-    
+
     return (
-        <div className="Mission">
-            <p className="M-title">Sứ mệnh - Giá trị cốt lõi</p>
+        <div className="TeachGerman">
+            <p className="TG-title">Đào tạo tiếng Đức</p>
             {initialvalues && <Formik 
                 initialValues={initialvalues[0]}
                 validationSchema = {validationSchema}
@@ -37,11 +37,20 @@ function View() {
                 {({
                     values,
                     errors,
+                    handleChange,
                     handleSubmit,
                     setFieldValue
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit} className = "FormNews">
+                    <form onSubmit={handleSubmit} className = "FormTeachGerman">
+                        <p className="TG-SubTitle">Tiêu đề:</p>
+                        <input 
+                            name="Title"
+                            value={values.Title}
+                            onChange={handleChange}
+                            className="TG-Input"
+                        />
+                        <p className="TG-SubTitle">Nội dung:</p>
                         <Editor
                             values = {values.Content}
                             defaultValue = {values.Content}
@@ -57,4 +66,4 @@ function View() {
     )
 }
 
-export default View
+export default TeachGerman;

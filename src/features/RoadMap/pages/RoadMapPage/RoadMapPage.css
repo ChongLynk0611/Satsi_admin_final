@@ -1,0 +1,26 @@
+.RoadMapPage{
+    height: auto;
+    width: 100%;
+    padding: 40px 10%;
+}
+.R-title{
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.Input-RoadMap{
+    padding: 10px;
+    width: 100%;
+}
+.textarea-RoadMap{
+    width: 100%;
+    padding: 10px;
+    height: 200px;
+}
+.btn-submit{
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+.R-subTitle{
+    margin-top: 20px;
+}

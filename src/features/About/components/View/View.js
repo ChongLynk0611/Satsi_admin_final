@@ -22,6 +22,7 @@ function View() {
     },[]);
 
     const onSubmit = (values) => {
+        console.log(values);
         updateData(ViewApi.updateView, setInitialValues, values, values.id);
     }
 

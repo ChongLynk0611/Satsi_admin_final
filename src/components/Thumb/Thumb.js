@@ -26,7 +26,7 @@ class Thumb extends React.Component {
   
       if (!file) { return null; }
   
-      if (loading) { return <p>loading...</p>; }
+      // if (loading) { return <p>loading...</p>; }
   
       return (<img src={thumb}
         alt={file.name}
