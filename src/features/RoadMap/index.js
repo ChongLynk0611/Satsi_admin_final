@@ -1,11 +1,16 @@
 import React from 'react';
-import {Route, Switch, useRouteMatch} from 'react-router-dom';
+import {Route, Switch, useRouteMatch, useHistory} from 'react-router-dom';
 
 import RoadMapPage from './pages/RoadMapPage/RoadMapPage';
 
 function RoadMap (props){
     const match = useRouteMatch();
+    const history = useHistory();
 
+    if(!localStorage.getItem('token')){
+        console.log(localStorage.getItem('token'));
+        history.push('/Login');
+    }
     return(
         <React.Fragment>
             <Switch>

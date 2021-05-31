@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch, useRouteMatch, useHistory} from 'react-router-dom';
 
-import EducationPage from './pages/EducationPage/EducationPage';
+import TechPage from './pages/TechPage/TechPage';
 
-function Education (props){
+function  Tech(props){
     const match = useRouteMatch();
     const history = useHistory();
 
@@ -14,10 +14,10 @@ function Education (props){
     return(
         <React.Fragment>
             <Switch>
-                <Route exact path={match.url} component={EducationPage}/>
+                <Route exact path={match.url} component={TechPage}/>
             </Switch>
         </React.Fragment>
     )
 }
 
-export default Education;
+export default Tech;

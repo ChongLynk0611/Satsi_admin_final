@@ -38,10 +38,19 @@ function View() {
                     values,
                     errors,
                     handleSubmit,
+                    handleChange,
                     setFieldValue
                     /* and other goodies */
                 }) => (
                     <form onSubmit={handleSubmit} className = "FormNews">
+                        <p className="M-text">Tiêu đề:</p>
+                        <input 
+                            name="Title"
+                            value={values.Title}
+                            onChange={handleChange}
+                            className="Input-Text"
+                        />
+                        <p className="M-text">Nội dung:</p>
                         <Editor
                             values = {values.Content}
                             defaultValue = {values.Content}

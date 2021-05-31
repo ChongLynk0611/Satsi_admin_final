@@ -8,6 +8,7 @@ import DirectionsIcon from '@material-ui/icons/Directions';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import WorkIcon from '@material-ui/icons/Work';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
+import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 
 import NavItem from 'components/NavItem/NavItem'
 
@@ -55,6 +56,11 @@ const ListItem = [
         icon: <AccessibilityIcon style={{fontSize:"24px"}}/>,
         content:"Hoạt động học viên",
         href:"/HoatDong"
+    },
+    {
+        icon: <PhonelinkSetupIcon style={{fontSize:"24px"}}/>,
+        content:"Công nghệ",
+        href:"/CongNghe"
     },
 
 ]

@@ -4,13 +4,13 @@ import * as yup from 'yup';
 
 import Editor from 'components/Editor/Editor';
 
-import './View.css';
+import './TechPage.css';
 
-import ViewApi from 'api/ViewApi';
+import TechApi from 'api/TechApi';
 import updateData from 'hooks/updateData';
 import fetchData from 'hooks/fetchData';
 
-function View() {
+function ActivityPage() {
     const [initialvalues, setInitialValues] = useState();
 
     const validationSchema = yup.object().shape({
@@ -19,16 +19,16 @@ function View() {
     })
 
     useEffect(() => {
-        fetchData.fetchData(ViewApi.getView, setInitialValues);
+        fetchData.fetchData(TechApi.getTech, setInitialValues);
     },[]);
 
     const onSubmit = (values) => {
-        updateData(ViewApi.updateView, setInitialValues, values, values.id);
+        updateData(TechApi.updateTech, setInitialValues, values, values.id);
     }
 
     return (
-        <div className="View">
-            <p className="V-title">Tầm nhìn</p>
+        <div className="ActivityPage">
+            <p className="Ac-title">Khoa học công nghệ</p>
             {initialvalues && <Formik 
                 initialValues={initialvalues[0]}
                 validationSchema = {validationSchema}
@@ -42,15 +42,15 @@ function View() {
                     setFieldValue
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit} className = "FormNews">
-                        <p className="V-text">Tiêu đề:</p>
+                    <form onSubmit={handleSubmit} className = "FormActivity">
+                        <p className="Ac-text">Tiêu đề:</p>
                         <input 
                             name="Title"
                             value={values.Title}
                             onChange={handleChange}
-                            className="Input-Text"
+                            className="Input-News"
                         />
-                        <p className="V-text">Nội dung:</p>
+                        <p className="Ac-text">Nội dung:</p>
                         <Editor
                             values = {values.Content}
                             defaultValue = {values.Content}
@@ -66,4 +66,4 @@ function View() {
     )
 }
 
-export default View
+export default ActivityPage

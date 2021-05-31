@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, useRouteMatch} from 'react-router-dom';
+import {Route, Switch, useRouteMatch, useHistory} from 'react-router-dom';
 
 import JobsPage from './pages/JobsPages/JobsPages';
 import AddAirNews from './components/AddAirNews/AddAirNews';
@@ -7,7 +7,12 @@ import EditAirNews from './components/EditAirNews/EditAirNews';
 
 function Jobs (props){
     const match = useRouteMatch();
+    const history = useHistory();
 
+    if(!localStorage.getItem('token')){
+        console.log(localStorage.getItem('token'));
+        history.push('/Login');
+    }
     return(
         <React.Fragment>
             <Switch>

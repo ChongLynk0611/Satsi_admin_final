@@ -1,23 +1,24 @@
-.View{
+.ActivityPage{
     height: auto;
     width: 100%;
     padding: 40px 10%;
 }
-.V-title{
+.Ac-title{
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
 }
-.V-text{
+.Ac-text{
     font-size: 16px;
-    margin-top:20px;
+    margin-top: 20px;
 }
-.Input-Text{
-    font-size: 16px;
+.Input-News{
+    font-size: 14px;
     padding: 10px;
     width: 100%;
 }
 .btn-submit{
     padding: 10px 20px;
     margin-top: 20px;
+    cursor: pointer;
 }

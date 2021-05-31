@@ -8,6 +8,15 @@
     margin-bottom: 20px;
     text-align: center;
 }
+.M-text{
+    font-size: 16px;
+    margin-top: 20px;
+}
+.Input-Text{
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+}
 .btn-submit{
     padding: 10px 20px;
     margin-top: 20px;

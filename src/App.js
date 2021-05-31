@@ -14,6 +14,7 @@ const Education = React.lazy(() => import('features/Education'));
 const Jobs = React.lazy(() => import('features/Jobs'));
 const Activity = React.lazy(() => import('features/Activity'));
 const Login = React.lazy(() => import('features/Login'));
+const Tech = React.lazy(() => import('features/Tech'));
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="/DaoTao" component={Education}/>
               <Route path="/HocNgheKhoiNghiep" component={Jobs}/>
               <Route path="/HoatDong" component={Activity}/>
+              <Route path="/CongNghe" component={Tech}/>
               <Route path="/Login" component={Login}/>
             </Switch>
           </Suspense>
