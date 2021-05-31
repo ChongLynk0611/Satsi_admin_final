@@ -11,6 +11,9 @@ const News = React.lazy(() => import('features/News'));
 const About = React.lazy(() => import('features/About'));
 const RoadMap = React.lazy(() => import('features/RoadMap'));
 const Education = React.lazy(() => import('features/Education'));
+const Jobs = React.lazy(() => import('features/Jobs'));
+const Activity = React.lazy(() => import('features/Activity'));
+const Login = React.lazy(() => import('features/Login'));
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
               <Route path="/VeSatsi" component={About}/>
               <Route path="/LoTrinh" component={RoadMap}/>
               <Route path="/DaoTao" component={Education}/>
+              <Route path="/HocNgheKhoiNghiep" component={Jobs}/>
+              <Route path="/HoatDong" component={Activity}/>
+              <Route path="/Login" component={Login}/>
             </Switch>
           </Suspense>
         </div>

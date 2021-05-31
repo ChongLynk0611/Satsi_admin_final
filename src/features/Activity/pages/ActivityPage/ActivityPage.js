@@ -4,13 +4,13 @@ import * as yup from 'yup';
 
 import Editor from 'components/Editor/Editor';
 
-import './TechOn.css';
+import './ActivityPage.css';
 
-import TeachOnApi from 'api/TechOn';
+import ActivityApi from 'api/ActivityApi';
 import updateData from 'hooks/updateData';
 import fetchData from 'hooks/fetchData';
 
-function TechOn() {
+function ActivityPage() {
     const [initialvalues, setInitialValues] = useState();
 
     const validationSchema = yup.object().shape({
@@ -19,16 +19,16 @@ function TechOn() {
     })
 
     useEffect(() => {
-        fetchData.fetchData(TeachOnApi.getTeachOnl, setInitialValues);
+        fetchData.fetchData(ActivityApi.getActivity, setInitialValues);
     },[]);
 
     const onSubmit = (values) => {
-        updateData(TeachOnApi.updateTeachOnl, setInitialValues, values, values.id);
+        updateData(ActivityApi.updateActivity, setInitialValues, values, values.id);
     }
 
     return (
-        <div className="TechOn">
-            <p className="TO-title">Đào tạo trực tuyến</p>
+        <div className="ActivityPage">
+            <p className="Ac-title">Hoạt động của học viên</p>
             {initialvalues && <Formik 
                 initialValues={initialvalues[0]}
                 validationSchema = {validationSchema}
@@ -37,20 +37,20 @@ function TechOn() {
                 {({
                     values,
                     errors,
-                    handleChange,
                     handleSubmit,
+                    handleChange,
                     setFieldValue
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit} className = "FormTechOn">
-                        <p className="TO-SubTitle">Tiêu đề:</p>
+                    <form onSubmit={handleSubmit} className = "FormActivity">
+                        <p className="Ac-text">Tiêu đề:</p>
                         <input 
                             name="Title"
                             value={values.Title}
                             onChange={handleChange}
-                            className="TO-Input"
+                            className="Input-News"
                         />
-                        <p className="TO-SubTitle">Nội dung:</p>
+                        <p className="Ac-text">Nội dung:</p>
                         <Editor
                             values = {values.Content}
                             defaultValue = {values.Content}
@@ -66,4 +66,4 @@ function TechOn() {
     )
 }
 
-export default TechOn;
+export default ActivityPage

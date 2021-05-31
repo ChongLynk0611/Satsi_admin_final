@@ -6,6 +6,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
+import WorkIcon from '@material-ui/icons/Work';
+import AccessibilityIcon from '@material-ui/icons/Accessibility';
 
 import NavItem from 'components/NavItem/NavItem'
 
@@ -43,6 +45,16 @@ const ListItem = [
         icon: <CastForEducationIcon style={{fontSize:"24px"}}/>,
         content:"Đào tạo",
         href:"/DaoTao"
+    },
+    {
+        icon: <WorkIcon style={{fontSize:"24px"}}/>,
+        content:"Học nghề-Khởi nghiệp",
+        href:"/HocNgheKhoiNghiep"
+    },
+    {
+        icon: <AccessibilityIcon style={{fontSize:"24px"}}/>,
+        content:"Hoạt động học viên",
+        href:"/HoatDong"
     },
 
 ]

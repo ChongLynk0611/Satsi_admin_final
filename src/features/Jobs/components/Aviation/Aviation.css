@@ -1,0 +1,36 @@
+.Aviation{
+    height: auto;
+    width: 100%;
+    padding: 40px 10%;
+}
+.A-title{
+    font-size: 32px;
+    font-family: 400;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.FormAviation{
+    display: flex;
+    flex-direction: column;
+}
+.FormAviation img{
+    height: 300px;
+    width: 50%;
+}
+.A-SubTitle{
+    font-size: 16px;
+    margin-top: 20px;
+}
+.A-Input{
+    font-size: 14px;
+    padding: 10px;
+}
+.btn-submit{
+    width: 200px;
+    padding: 20px 40px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.error{
+    color: red;
+}

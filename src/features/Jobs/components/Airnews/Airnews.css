@@ -1,0 +1,54 @@
+.Airnews{
+    height: auto;
+    width: 100%;
+    padding: 40px 10%;
+}
+
+.AN-title{
+    font-size: 32px;
+    text-align: center;
+}
+.AN-body{
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 100%;
+}
+.AN-body table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.AN-body tr{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 5fr 1fr 1fr;
+    margin: 0;
+    padding: 0;
+}
+.AN-body td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.AN-icon{
+    cursor: pointer;
+}
+.AN-detail{
+    padding-left: 30px !important;
+}
+.btn_Them{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    width: 120px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.AN-icon{
+    cursor: pointer;
+}
