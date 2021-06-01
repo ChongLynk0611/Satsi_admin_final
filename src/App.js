@@ -2,6 +2,7 @@ import React,{Suspense} from 'react';
 import {BrowserRouter, Switch,  Route} from 'react-router-dom';
 
 import NavLeft from 'components/NavLeft/NavLeft';
+import { PrivateRoute } from 'components/PrivateRoute';
 
 import './App.css';
 
@@ -24,15 +25,15 @@ function App() {
         <div className="App-body">
           <Suspense fallback={<div>loading...</div>}>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/DangBai" component={Categories}/>
-              <Route path="/TinTuc" component={News}/>
-              <Route path="/VeSatsi" component={About}/>
-              <Route path="/LoTrinh" component={RoadMap}/>
-              <Route path="/DaoTao" component={Education}/>
-              <Route path="/HocNgheKhoiNghiep" component={Jobs}/>
-              <Route path="/HoatDong" component={Activity}/>
-              <Route path="/CongNghe" component={Tech}/>
+              <PrivateRoute exact path="/" component={Home} />
+              <PrivateRoute path="/DangBai" component={Categories}/>
+              <PrivateRoute path="/TinTuc" component={News}/>
+              <PrivateRoute path="/VeSatsi" component={About}/>
+              <PrivateRoute path="/LoTrinh" component={RoadMap}/>
+              <PrivateRoute path="/DaoTao" component={Education}/>
+              <PrivateRoute path="/HocNgheKhoiNghiep" component={Jobs}/>
+              <PrivateRoute path="/HoatDong" component={Activity}/>
+              <PrivateRoute path="/CongNghe" component={Tech}/>
               <Route path="/Login" component={Login}/>
             </Switch>
           </Suspense>

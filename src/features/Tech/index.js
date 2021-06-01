@@ -5,12 +5,7 @@ import TechPage from './pages/TechPage/TechPage';
 
 function  Tech(props){
     const match = useRouteMatch();
-    const history = useHistory();
 
-    if(!localStorage.getItem('token')){
-        console.log(localStorage.getItem('token'));
-        history.push('/Login');
-    }
     return(
         <React.Fragment>
             <Switch>

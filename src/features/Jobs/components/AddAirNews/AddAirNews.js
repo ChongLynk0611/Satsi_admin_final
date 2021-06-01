@@ -1,9 +1,10 @@
 import React,{useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { Formik} from 'formik';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as yup from 'yup';
 
-import Editor from 'components/Editor/Editor';
 import Thumb from 'components/Thumb/Thumb';
 
 import './AddAirNews.css';
@@ -82,11 +83,14 @@ function AddAirNews() {
                         {errors["Image"] && <p className="error">{errors["Image"]}</p>}
                         {values.Image && <Thumb file={values.Image} />}
                         <p className="N-text">Nội dung:</p>
-                        <Editor
-                            values = {values.Content}
-                            name = "Content"
-                            onChange = {v => setFieldValue('Content', v)}
-
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.Content}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.Content = data;
+                            }}
+                            name="Content"
                         />
                         {errors["Content"] && <p className="error">{errors["Content"]}</p>}
                         <button className="btn-submit" type="submit">Đăng bài</button>

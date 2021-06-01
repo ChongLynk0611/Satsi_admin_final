@@ -11,7 +11,6 @@ import DiagramApi from 'api/DiagramApi';
 import fetchData from 'hooks/fetchData';
 import deleteData from 'hooks/deleteData';
 import postData from 'hooks/postData';
-import { NaturePeopleOutlined } from '@material-ui/icons';
 
 function Diagram() {
     const [images, setImages] = useState();
@@ -44,7 +43,7 @@ function Diagram() {
             <div className="D-body">
                 {images && images.map((image, index) => (
                     <div className="DiagramItem" key={index}>
-                        <img src={`${process.env.REACT_APP_API_URL}/${image.Image}`}/>
+                        <img src={`${process.env.REACT_APP_API_URL}/${image.Image}`} alt="img"/>
                         <div 
                             className="btn_delete" 
                             title="Xóa ảnh"

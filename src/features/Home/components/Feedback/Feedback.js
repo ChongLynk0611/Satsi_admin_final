@@ -97,7 +97,7 @@ function Feedback() {
                     /* and other goodies */
                 }) => (
                     <div>
-                        <p className="F-title">Phản hồi của học viên</p>
+                        <p className="F-title">Cảm nhận của học viên</p>
                         <div className="btn_Them" onClick={Addhanlde(values)}>
                             <AddIcon style={{fontSize:"18px", marginRight:"3px"}}/>
                             <span>Thêm mới</span>
@@ -126,7 +126,7 @@ function Feedback() {
                             }
                         </div>
                         <div className="F-curent">
-                            <p className="F-title">Chi tiết phản hồi</p>
+                            <p className="F-title">Chi tiết cảm nhận</p>
                             <form onSubmit={handleSubmit} className="ImageSubmit">
                                 <p className="F-subTitle">Tên:</p>
                                 <input 

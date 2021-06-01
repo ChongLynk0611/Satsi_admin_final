@@ -7,12 +7,7 @@ import EditAirNews from './components/EditAirNews/EditAirNews';
 
 function Jobs (props){
     const match = useRouteMatch();
-    const history = useHistory();
 
-    if(!localStorage.getItem('token')){
-        console.log(localStorage.getItem('token'));
-        history.push('/Login');
-    }
     return(
         <React.Fragment>
             <Switch>

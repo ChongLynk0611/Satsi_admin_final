@@ -2,7 +2,8 @@ import React,{useState, useEffect} from 'react'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import Editor from 'components/Editor/Editor';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './View.css';
 
@@ -51,11 +52,14 @@ function View() {
                             className="Input-Text"
                         />
                         <p className="V-text">Nội dung:</p>
-                        <Editor
-                            values = {values.Content}
-                            defaultValue = {values.Content}
-                            name = "Content"
-                            onChange = {v => setFieldValue('Content', v)}
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.Content}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.Content = data;
+                            }}
+                            name="Content"
                         />
                         {errors["Content"] && <p className="error">{errors["Content"]}</p>}
                         <button className="btn-submit" type="submit">Cập nhật</button>

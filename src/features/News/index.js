@@ -8,12 +8,6 @@ import EditNews from './pages/EditNews/EditNews';
 
 function News (props){
     const match = useRouteMatch();
-    const history = useHistory();
-
-    if(!localStorage.getItem('token')){
-        console.log(localStorage.getItem('token'));
-        history.push('/Login');
-    }
 
     return(
         <React.Fragment>

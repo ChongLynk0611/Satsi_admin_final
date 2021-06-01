@@ -3,11 +3,6 @@ import ReactQuill from 'react-quill';
 import './Editor.css';
 
 function Editor(props) {
-    const [body, setBody] = useState("");
-
-    const hanldeChange = (e) => {
-        console.log(e);   
-    }
 
     return (
         <div className="Editor">

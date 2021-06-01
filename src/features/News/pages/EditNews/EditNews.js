@@ -1,9 +1,11 @@
 import React,{useState, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import { Formik} from 'formik';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as yup from 'yup';
 
-import Editor from '../../../../components/Editor/Editor';
+// import Editor from '../../../../components/Editor/Editor';
 import Thumb from 'components/Thumb/Thumb';
 
 import './EditNews.css';
@@ -88,11 +90,14 @@ function EditNews() {
                         {errors["Image"] && <p className="error">{errors["Image"]}</p>}
                         {typeof(values.Image) === 'string' ? <img src={`${process.env.REACT_APP_API_URL}/${values.Image}`}/> : <Thumb file={values.Image} />}
                         <p className="N-text">Nội dung:</p>
-                        <Editor
-                            values = {values.Content}
-                            defaultValue = {values.Content}
-                            name = "Content"
-                            onChange = {v => setFieldValue('Content', v)}
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={values.Content}
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                values.Content = data;
+                            }}
+                            name="Content"
                         />
                         {errors["Content"] && <p className="error">{errors["Content"]}</p>}
                         <button className="btn-submit" type="submit">Cập nhật</button>
