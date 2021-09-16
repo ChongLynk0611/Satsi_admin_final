@@ -1,5 +1,5 @@
-import React,{Suspense} from 'react';
-import {BrowserRouter, Switch,  Route} from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import NavLeft from 'components/NavLeft/NavLeft';
 import { PrivateRoute } from 'components/PrivateRoute';
@@ -16,29 +16,29 @@ const Jobs = React.lazy(() => import('features/Jobs'));
 const Activity = React.lazy(() => import('features/Activity'));
 const Login = React.lazy(() => import('features/Login'));
 const Tech = React.lazy(() => import('features/Tech'));
-
+const Collaborators = React.lazy(() => import('features/Collaborators'));
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
         <NavLeft />
-        <div className="App-body">
+        <div className='App-body'>
           <Suspense fallback={<div>loading...</div>}>
             <Switch>
-              <PrivateRoute exact path="/" component={Home} />
-              <PrivateRoute path="/DangBai" component={Categories}/>
-              <PrivateRoute path="/TinTuc" component={News}/>
-              <PrivateRoute path="/VeSatsi" component={About}/>
-              <PrivateRoute path="/LoTrinh" component={RoadMap}/>
-              <PrivateRoute path="/DaoTao" component={Education}/>
-              <PrivateRoute path="/HocNgheKhoiNghiep" component={Jobs}/>
-              <PrivateRoute path="/HoatDong" component={Activity}/>
-              <PrivateRoute path="/CongNghe" component={Tech}/>
-              <Route path="/Login" component={Login}/>
+              <PrivateRoute exact path='/' component={Home} />
+              <PrivateRoute path='/DangBai' component={Categories} />
+              <PrivateRoute path='/TinTuc' component={News} />
+              <PrivateRoute path='/VeSatsi' component={About} />
+              <PrivateRoute path='/LoTrinh' component={RoadMap} />
+              <PrivateRoute path='/DaoTao' component={Education} />
+              <PrivateRoute path='/HocNgheKhoiNghiep' component={Jobs} />
+              <PrivateRoute path='/HoatDong' component={Activity} />
+              <PrivateRoute path='/CongNghe' component={Tech} />
+              <PrivateRoute path='/Collaborators' component={Collaborators} />
+              <Route path='/Login' component={Login} />
             </Switch>
           </Suspense>
         </div>
-        
       </BrowserRouter>
     </div>
   );

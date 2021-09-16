@@ -1,7 +1,7 @@
 .NavItem{
     height: auto;
     width: 100%;
-    padding: 15px 15px;
+    padding: 12px 15px;
     margin-top: 10px;
     cursor: pointer;
     display: flex;

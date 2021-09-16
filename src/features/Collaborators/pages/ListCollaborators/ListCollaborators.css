@@ -1,0 +1,58 @@
+.ListCollaborators {
+  width: 100%;
+  height: auto;
+  padding: 100px 10%;
+}
+.ListCollaborators .LC-title {
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+}
+.btn_Them {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #000;
+  width: 120px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.LCo-body {
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 100%;
+}
+.LCo-body table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+.LCo-body tr {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 1fr 1fr;
+  margin: 0;
+  padding: 0;
+}
+.LCo-body td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.LCo-icon {
+  cursor: pointer;
+}
+.LCo-detail {
+  padding-left: 30px !important;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+}
